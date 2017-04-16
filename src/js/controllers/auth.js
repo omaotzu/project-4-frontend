@@ -16,13 +16,13 @@ function RegisterCtrl($auth, $state){
   vm.register = register;
 }
 
-LoginCtrl.$inject = ['$auth'];
-function LoginCtrl($auth) {
+LoginCtrl.$inject = ['$auth', '$state'];
+function LoginCtrl($auth, $state) {
   const vm = this;
 
   function login() {
     $auth.login(vm.credentials)
-      .then(user =>console.log(user));
+      .then(() => $state.go('usersShow', { id: $auth.getPayload().id }));
   }
   vm.login = login;
 }

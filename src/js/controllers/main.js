@@ -16,7 +16,9 @@ function MainCtrl($rootScope, $state, $auth){
   $rootScope.$on('$stateChangeSuccess', () => {
     if(vm.stateHasChanged) vm.message = null;
     if(!vm.stateHasChanged) vm.stateHasChanged = true;
-    if($auth.getPayload()) vm.currentUser = $auth.getPayload();
+    if($auth.getPayload()) {
+      vm.currentUser = $auth.getPayload();
+    }
   });
 
   const protectedStates = ['someStatesWeDontHaveYet'];

@@ -1,0 +1,7 @@
+<div>
+  <h1>{{ usersShow.user.username }}</h1>
+  <h3>{{usersShow.user.full_name}}</h3>
+  <h3>{{usersShow.user.trips}}</h3>
+  <button ui-sref="usersEdit({ id: usersShow.user.id })">Edit</button>
+  <button ng-click="usersShow.delete()">Delete</button>
+</div>

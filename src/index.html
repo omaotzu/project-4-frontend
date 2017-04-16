@@ -12,8 +12,11 @@
   <body ng-controller= "MainCtrl as main">
     <nav>
       <ul>
+        <li><a ui-sref="tripsIndex">Trips</a></li>
+        <li ng-if="main.isAuthenticated()"><a ui-sref="tripsNew">Add a Trip</a></li>
         <li ng-if="!main.isAuthenticated()"><a ui-sref="login">Login</a></li>
         <li ng-if="!main.isAuthenticated()"><a ui-sref="register">Register</a></li>
+        <li ng-if="main.isAuthenticated()"><a ui-sref="usersShow({ id: main.currentUser.id })">Profile</a></li>
         <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" href="#">Logout</a></li>
       </ul>
     </nav>
