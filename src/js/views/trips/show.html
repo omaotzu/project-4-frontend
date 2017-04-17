@@ -1,1 +1,6 @@
-<h1>Show Trip</h1>
+<h1>{{ tripsShow.trip.trip_name }}</h1>
+<p>From {{ tripsShow.trip.start_date | date }} until {{ tripsShow.trip.leave_date | date }}</p>
+
+<ul>
+  <li ng-repeat="stop in tripsShow.trip.stops">{{ stop }}</li>
+</ul>

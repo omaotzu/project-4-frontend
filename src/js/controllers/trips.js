@@ -25,8 +25,8 @@ function TripsNewCtrl(Trip, User, $state) {
   vm.create = tripsCreate;
 }
 
-TripsShowCtrl.$inject = ['Trip'];
-function TripsShowCtrl(Trip) {
+TripsShowCtrl.$inject = ['Trip', '$stateParams'];
+function TripsShowCtrl(Trip, $stateParams) {
   const vm = this;
   vm.trip = Trip.get($stateParams);
 }
