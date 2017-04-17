@@ -1,0 +1,19 @@
+<h1>{{ tripsShow.trip.trip_name }}</h1>
+<p>From {{ tripsShow.trip.start_date | date }} until {{ tripsShow.trip.leave_date | date }}</p>
+
+<ul>
+  <li ng-repeat="stop in tripsShow.trip.stops">
+    <a ui-sref="stopsShow({ id: stop.id })">{{ stop }}</a>
+    <button ng-click="tripsShow.deleteStop(stop)">x</button>
+  </li>
+</ul>
+
+<form ng-submit="tripsShow.addStop()">
+  <label for="place">Place</label>
+  <input type="text" name="place" ng-model="tripsShow.stop.place">
+  <label for="start_date">Start Date</label>
+  <input type="date" name="start_date" ng-model="tripsShow.stop.start_date">
+  <label for="leave_date">Leave Date</label>
+  <input type="date" name="leave_date" ng-model="tripsShow.stop.leave_date">
+  <button>Add</button>
+</form>
