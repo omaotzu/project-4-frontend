@@ -1,7 +1,8 @@
 angular
   .module('myGuideBlog')
   .controller('TripsIndexCtrl', TripsIndexCtrl)
-  .controller('TripsNewCtrl', TripsNewCtrl);
+  .controller('TripsNewCtrl', TripsNewCtrl)
+  .controller('TripsShowCtrl', TripsShowCtrl);
 
 TripsIndexCtrl.$inject = ['Trip'];
 function TripsIndexCtrl(Trip) {
@@ -22,4 +23,10 @@ function TripsNewCtrl(Trip, User, $state) {
       .then(() => $state.go('tripsIndex'));
   }
   vm.create = tripsCreate;
+}
+
+TripsShowCtrl.$inject = ['Trip'];
+function TripsShowCtrl(Trip) {
+  const vm = this;
+  vm.trip = Trip.get($stateParams);
 }
