@@ -2,7 +2,10 @@
 <p>From {{ tripsShow.trip.start_date | date }} until {{ tripsShow.trip.leave_date | date }}</p>
 
 <ul>
-  <li ng-repeat="stop in tripsShow.trip.stops">{{ stop }}</li>
+  <li ng-repeat="stop in tripsShow.trip.stops">
+    <a ui-sref="stopsShow({ id: stop.id })">{{ stop }}</a>
+    <button ng-click="tripsShow.deleteStop(stop)">x</button>
+  </li>
 </ul>
 
 <form ng-submit="tripsShow.addStop()">

@@ -42,4 +42,15 @@ function TripsShowCtrl(Trip, Stop, $stateParams) {
     });
   }
   vm.addStop = addStop;
+
+  function deleteStop(stop) {
+    Stop
+      .delete({ id: stop.id })
+      .$promise
+      .then(() => {
+        const index = vm.trip.stops.indexOf(stop);
+        vm.trip.stops.splice(index, 1);
+      });
+  }
+  vm.deleteStop = deleteStop;
 }
