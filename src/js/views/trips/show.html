@@ -12,13 +12,13 @@
   <form ng-submit="tripsShow.addStop()" class="form-group">
     <div>
       <label for="place">Place</label>
-      <input type="text" name="place" ng-model="tripsShow.stop.place" class="form-control">
+      <input type="text" name="place" g-places-autocomplete ng-model="tripsShow.stop.place" class="form-control">
     </div>
     <div>
       <label for="country">Country of Stop</label>
     </div>
     <div>
-      <input class="search" type="text" ng-model="tripsShow.q" placeholder="Search for a country..." class="form-control">
+      <input class="search form-control" type="text" ng-model="tripsShow.q" placeholder="Search for a country...">
     </div>
     <div>
       <select ng-model="tripsShow.stop.country">
