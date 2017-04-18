@@ -1,8 +1,10 @@
 <h1>{{ stopsShow.stop.place }}</h1>
 
-<ul>
-  <li ng-repeat="post in stopsShow.stop.posts">{{ post }}</li>
-</ul>
+<div>
+  <div ng-repeat="post in stopsShow.stop.posts">
+    <strong>{{ post.title }}</strong><br> {{ post.body }}
+  </div>
+</div>
 
 <form ng-submit="stopsShow.addPost()">
 
