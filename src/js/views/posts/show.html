@@ -1,0 +1,12 @@
+<h1>{{ postsShow.post.title }}</h1>
+<p>{{ postsShow.post.body }}</p>
+
+<div ng-repeat="comment in postsShow.post.comments">
+  {{ comment.body }} - {{ comment.user.first_name }}
+</div>
+
+<h2>Add Comment</h2>
+<form ng-submit="postsShow.addComment()">
+  <textarea type="text" name="body" ng-model="postsShow.comment.body"></textarea>
+  <button>Create</button>
+</form>
