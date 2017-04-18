@@ -9,13 +9,22 @@
 </ul>
 
 <form ng-submit="tripsShow.addStop()">
+
   <label for="place">Place</label>
   <input type="text" name="place" ng-model="tripsShow.stop.place">
+
   <label for="country">Country of Stop</label>
-  <input type="text" name="country" ng-model="tripsShow.stop.country">
+  <input class="search" type="text" ng-model="tripsShow.q" placeholder="Search for a country...">
+
+  <select ng-model="tripsShow.stop.country">
+    <option ng-repeat="country in tripsShow.filtered">{{ country }}</option>
+  </select>
+
   <label for="start_date">Start Date</label>
   <input type="date" name="start_date" ng-model="tripsShow.stop.start_date">
+
   <label for="leave_date">Leave Date</label>
   <input type="date" name="leave_date" ng-model="tripsShow.stop.leave_date">
+
   <button>Add</button>
 </form>
