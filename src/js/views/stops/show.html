@@ -3,3 +3,19 @@
 <ul>
   <li ng-repeat="post in stopsShow.stop.posts">{{ post }}</li>
 </ul>
+
+<form ng-submit="stopsShow.addPost()">
+
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" name="title" ng-model="stopsShow.post.title">
+  </div>
+
+  <div class="form-group">
+    <label for="post">Your Post</label>
+    <textarea ng-model="stopsShow.post.body"></textarea>
+  </div>
+
+  <button>Post</button>
+
+</form>
