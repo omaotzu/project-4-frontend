@@ -11,8 +11,8 @@ function TripsIndexCtrl(Trip) {
   vm.allTrips = Trip.query();
 }
 
-TripsNewCtrl.$inject = ['Trip', 'User', '$state'];
-function TripsNewCtrl(Trip, User, $state) {
+TripsNewCtrl.$inject = ['Trip', 'User', '$state', '$auth'];
+function TripsNewCtrl(Trip, User, $state, $auth) {
   const vm = this;
   vm.trip = {};
   vm.allUsers = User.query();
@@ -21,7 +21,7 @@ function TripsNewCtrl(Trip, User, $state) {
     Trip
       .save({ trip: vm.trip })
       .$promise
-      .then(() => $state.go('tripsIndex'));
+      .then(() => $state.go('usersShow', { id: $auth.getPayload().id }));
   }
   vm.create = tripsCreate;
 }
