@@ -1,11 +1,5 @@
 <h1>{{ stopsShow.stop.place }}</h1>
 
-<div>
-  <div ng-repeat="post in stopsShow.stop.posts">
-    <strong>{{ post.title }}</strong><br> {{ post.body }}
-  </div>
-</div>
-
 <form ng-submit="stopsShow.addPost()">
 
   <div class="form-group">
@@ -15,9 +9,16 @@
 
   <div class="form-group">
     <label for="post">Your Post</label>
-    <textarea ng-model="stopsShow.post.body"></textarea>
+    <textarea class="form-group" ng-model="stopsShow.post.body"></textarea>
   </div>
 
   <button>Post</button>
 
 </form>
+
+
+<div>
+  <div ng-repeat="post in stopsShow.stop.posts">
+    <a ui-sref="postsShow({ id: post.id })"><strong>{{ post.title }}</strong><br> {{ post.body }}</a>
+  </div>
+</div>

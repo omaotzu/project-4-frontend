@@ -19,4 +19,19 @@ function StopsShowCtrl(Stop, Post, $stateParams) {
       });
   }
   vm.addPost = addPost;
+
+  function addComment() {
+    console.log(vm.stop);
+    // vm.comment.post_id = vm.stop.post.id;
+
+    Comment
+      .save({ comment: vm.comment })
+      .$promise
+      .then((comment) => {
+        vm.post.comments.push(comment);
+        vm.comment = {};
+    });
+  }
+  vm.addComment = addComment;
+
 }
