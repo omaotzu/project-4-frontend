@@ -1,30 +1,38 @@
-<h1>{{ tripsShow.trip.trip_name }}</h1>
-<p>From {{ tripsShow.trip.start_date | date }} until {{ tripsShow.trip.leave_date | date }}</p>
+<div class="container">
+  <h1>{{ tripsShow.trip.trip_name }}</h1>
+  <p>From {{ tripsShow.trip.start_date | date }} until {{ tripsShow.trip.leave_date | date }}</p>
 
-<ul>
-  <li ng-repeat="stop in tripsShow.trip.stops">
-    <a ui-sref="stopsShow({ id: stop.id })">{{ stop }}</a>
-    <button ng-click="tripsShow.deleteStop(stop)">x</button>
-  </li>
-</ul>
+  <ul>
+    <li ng-repeat="stop in tripsShow.trip.stops">
+      <a ui-sref="stopsShow({ id: stop.id })">{{ stop }}</a>
+      <button ng-click="tripsShow.deleteStop(stop)">x</button>
+    </li>
+  </ul>
 
-<form ng-submit="tripsShow.addStop()">
-
-  <label for="place">Place</label>
-  <input type="text" name="place" ng-model="tripsShow.stop.place">
-
-  <label for="country">Country of Stop</label>
-  <input class="search" type="text" ng-model="tripsShow.q" placeholder="Search for a country...">
-
-  <select ng-model="tripsShow.stop.country">
-    <option ng-repeat="country in tripsShow.filtered">{{ country }}</option>
-  </select>
-
-  <label for="start_date">Start Date</label>
-  <input type="date" name="start_date" ng-model="tripsShow.stop.start_date">
-
-  <label for="leave_date">Leave Date</label>
-  <input type="date" name="leave_date" ng-model="tripsShow.stop.leave_date">
-
-  <button>Add</button>
-</form>
+  <form ng-submit="tripsShow.addStop()" class="form-group">
+    <div>
+      <label for="place">Place</label>
+      <input type="text" name="place" ng-model="tripsShow.stop.place" class="form-control">
+    </div>
+    <div>
+      <label for="country">Country of Stop</label>
+    </div>
+    <div>
+      <input class="search" type="text" ng-model="tripsShow.q" placeholder="Search for a country..." class="form-control">
+    </div>
+    <div>
+      <select ng-model="tripsShow.stop.country">
+        <option ng-repeat="country in tripsShow.filtered">{{ country }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="start_date">Start Date</label>
+      <input type="date" name="start_date" ng-model="tripsShow.stop.start_date" class="form-control">
+    </div>
+    <div>
+      <label for="leave_date">Leave Date</label>
+      <input type="date" name="leave_date" ng-model="tripsShow.stop.leave_date" class="form-control">
+    </div>
+    <button>Add</button>
+  </form>
+</div>
