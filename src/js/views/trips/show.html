@@ -12,7 +12,7 @@
   <form ng-submit="tripsShow.addStop()" class="form-group">
     <div>
       <label for="place">Place</label>
-      <input type="text" name="place" g-places-autocomplete ng-model="tripsShow.stop.place" class="form-control">
+      <input name="place" autocomplete ng-model="tripsShow.city" lat="tripsShow.info.lat" lng="tripsShow.info.lng" place="tripsShow.info.name" class="form-control">
     </div>
     <div>
       <label for="country">Country of Stop</label>

@@ -1,4 +1,3 @@
-/* global google: true */
 angular
   .module('myGuideBlog')
   .controller('TripsIndexCtrl', TripsIndexCtrl)
@@ -33,20 +32,9 @@ function TripsShowCtrl(Trip, Stop, $stateParams, filterFilter, $scope) {
 
   function addStop() {
     vm.stop.trip_id = vm.trip.id;
-
-    const input = document.getElementById('autocomplete');
-    const autocomplete = new google.maps.places.Autocomplete(input);
-
-    autocomplete.addListener('place_changed', function () {
-      var place = autocomplete.getPlace();
-      var location = place.geometry.location.toJSON();
-      vm.city = place.address_components[0].long_name;
-      vm.lat= location.lat;
-      vm.lng= location.lng;
-    });
-    console.log('LAT', vm.lat);
-    console.log('LNG', vm.lng);
-    console.log('NAME', vm.city);
+    vm.stop.lat = vm.info.lat;
+    vm.stop.lng = vm.info.lng;
+    vm.stop.place = vm.info.name;
 
     Stop
       .save({ stop: vm.stop })
@@ -55,6 +43,7 @@ function TripsShowCtrl(Trip, Stop, $stateParams, filterFilter, $scope) {
         vm.trip.stops.push(stop);
         vm.stop = {};
       });
+    vm.city = null;
   }
   vm.addStop = addStop;
 
