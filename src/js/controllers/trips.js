@@ -31,15 +31,15 @@ function TripsShowCtrl(Trip, Stop, $stateParams) {
   vm.trip = Trip.get($stateParams);
 
   function addStop() {
-  vm.stop.trip_id = vm.trip.id;
+    vm.stop.trip_id = vm.trip.id;
 
-  Stop
-    .save({ stop: vm.stop })
-    .$promise
-    .then((stop) => {
-      vm.trip.stops.push(stop);
-      vm.stop = {};
-    });
+    Stop
+      .save({ stop: vm.stop })
+      .$promise
+      .then((stop) => {
+        vm.trip.stops.push(stop);
+        vm.stop = {};
+      });
   }
   vm.addStop = addStop;
 
@@ -53,4 +53,7 @@ function TripsShowCtrl(Trip, Stop, $stateParams) {
       });
   }
   vm.deleteStop = deleteStop;
+
+
+
 }
