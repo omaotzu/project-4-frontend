@@ -1,4 +1,4 @@
-angular
+  angular
   .module('myGuideBlog')
   .controller('TripsIndexCtrl', TripsIndexCtrl)
   .controller('TripsNewCtrl', TripsNewCtrl)

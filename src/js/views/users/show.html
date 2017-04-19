@@ -1,10 +1,12 @@
 <div>
   <h3>{{usersShow.user.full_name}}</h3>
+  <button ui-sref="usersEdit({ id: usersShow.user.id })">Edit</button>
+  <button ng-click="usersShow.delete()">Delete</button>
+
   <ul>
     <li ng-repeat="trip in usersShow.user.trips">{{ trip }}
       <button ui-sref="tripsShow({ id: trip.id })">Show</button>
+      <button ng-click="usersShow.deleteTrip(trip)">Delete</button>
     </li>
-    <button ui-sref="usersEdit({ id: usersShow.user.id })">Edit</button>
-    <button ng-click="usersShow.delete()">Delete</button>
   </ul>
 </div>
