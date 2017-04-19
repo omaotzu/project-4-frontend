@@ -2,15 +2,15 @@ angular
   .module('myGuideBlog')
   .controller('PostsShowCtrl', PostsShowCtrl);
 
-PostsShowCtrl.$inject = ['Post', 'Comment', 'Image', '$stateParams'];
-function PostsShowCtrl(Post, Comment, Image, $stateParams) {
+PostsShowCtrl.$inject = ['Post', 'Comment', 'Img', '$stateParams'];
+function PostsShowCtrl(Post, Comment, Img, $stateParams) {
   const vm = this;
   vm.post = Post.get($stateParams);
 
 
   function addImage() {
     vm.image.post_id = vm.post.id;
-    Image
+    Img
       .save({ image: vm.image })
       .$promise
       .then((image) => {
@@ -21,7 +21,7 @@ function PostsShowCtrl(Post, Comment, Image, $stateParams) {
   vm.addImage = addImage;
 
   function deleteImage(image) {
-    Image
+    Img
       .delete({ id: image.id })
       .$promise
       .then(() => {

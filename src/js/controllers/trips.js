@@ -10,15 +10,18 @@ function TripsIndexCtrl(Trip, Stop) {
   const vm = this;
 
   vm.allTrips = Trip.query();
-  vm.allStops = Stop.query();
-  console.log(vm.allStops);
-  // vm.latLng = vm.allStops.map((stop, i) => {
-  //   console.log(stop);
-  //   lat: stop.lat,
-  //   lng: stop.lng
-  // });
-
-  initMap();
+  Stop.query()
+    .$promise
+    .then((stops) => {
+      vm.allStops = stops.map((stop) => {
+        return {
+          lat: stop.lat,
+          lng: stop.lng
+        };
+      });
+      console.log(vm.allStops);
+      initMap();
+    });
 
   function initMap() {
     vm.map = new google.maps.Map(document.getElementById('map'), {
@@ -27,15 +30,16 @@ function TripsIndexCtrl(Trip, Stop) {
       scrollwheel: false
     });
 
-    vm.markers = vm.locations.map(function(location, i) {
+    vm.markers = vm.allStops.map(function(location) {
       return new google.maps.Marker({
         position: location
-        // label: labels[i % labels.length]
       });
     });
 
-    vm.markerCluster = new MarkerClusterer(vm.map, vm.markers,
-      {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
+
+      vm.markerCluster = new MarkerClusterer(vm.map, vm.markers, {
+        imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+      }
     );
   }
 }
