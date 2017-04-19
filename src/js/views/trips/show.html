@@ -27,11 +27,11 @@
     </div>
     <div>
       <label for="start_date">Start Date</label>
-      <input type="date" name="start_date" ng-model="tripsShow.stop.start_date" class="form-control">
+      <input type="date" name="start_date" min="tripStartDate" max="{{leaveDate}}" ng-model="tripsShow.stop.start_date" class="form-control">
     </div>
     <div>
       <label for="leave_date">Leave Date</label>
-      <input type="date" name="leave_date" ng-model="tripsShow.stop.leave_date" class="form-control">
+      <input type="date" name="leave_date" min="{{tripsShow.stop.start_date}}" max="{{leaveDate}}" ng-model="tripsShow.stop.leave_date" class="form-control">
     </div>
     <button>Add</button>
   </form>
