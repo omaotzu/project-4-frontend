@@ -1,45 +1,45 @@
-/* global moment:true */
+/* global moment:true, google:true, MarkerClusterer:true */
 angular
 .module('myGuideBlog')
 .controller('TripsIndexCtrl', TripsIndexCtrl)
 .controller('TripsNewCtrl', TripsNewCtrl)
 .controller('TripsShowCtrl', TripsShowCtrl);
 
-TripsIndexCtrl.$inject = ['Trip', 'Stop'];
-function TripsIndexCtrl(Trip, Stop) {
+TripsIndexCtrl.$inject = ['Trip', 'Post'];
+function TripsIndexCtrl(Trip, Post) {
   const vm = this;
 
   vm.allTrips = Trip.query();
-  Stop.query()
+
+  Post.query()
     .$promise
-    .then((stops) => {
-      vm.allStops = stops.map((stop) => {
+    .then((posts) => {
+      vm.allPosts = posts.map((post) => {
         return {
-          lat: stop.lat,
-          lng: stop.lng
+          lat: post.stop.lat,
+          lng: post.stop.lng
         };
       });
-      console.log(vm.allStops);
+      console.log(vm.allPosts);
       initMap();
     });
 
+
   function initMap() {
     vm.map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 3,
-      center: { lat: 51.5152149, lng: -0.0723318 },
+      zoom: 2,
+      center: { lat: 10.755018, lng: 32.344179 },
       scrollwheel: false
     });
 
-    vm.markers = vm.allStops.map(function(location) {
+    vm.markers = vm.allPosts.map(function(location) {
       return new google.maps.Marker({
         position: location
       });
     });
 
-
-      vm.markerCluster = new MarkerClusterer(vm.map, vm.markers, {
-        imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-      }
+    vm.markerCluster = new MarkerClusterer(vm.map, vm.markers,
+      {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
     );
   }
 }
@@ -69,7 +69,7 @@ function TripsShowCtrl(Trip, Stop, $stateParams, filterFilter, $scope) {
   Trip
     .get($stateParams)
     .$promise
-    .then((trip) => {
+    .then(() => {
       vm.startDate = moment(vm.trip.start_date).format('YYYY-MM-DD').toString();
       vm.leaveDate = moment(vm.trip.leave_date).format('YYYY-MM-DD').toString();
     });
@@ -86,7 +86,6 @@ function TripsShowCtrl(Trip, Stop, $stateParams, filterFilter, $scope) {
       .$promise
       .then((stop) => {
         vm.trip.stops.push(stop);
-        console.log(vm.stop);
         vm.stop = {};
       });
     vm.city = null;

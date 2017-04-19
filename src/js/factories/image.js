@@ -1,6 +1,6 @@
 angular
   .module('myGuideBlog')
-  .factory('Image', Img);
+  .factory('Img', Img);
 
 Img.$inject = ['$resource', 'API_URL'];
 function Img($resource, API_URL) {

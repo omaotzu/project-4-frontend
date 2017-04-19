@@ -34,7 +34,7 @@ function MainCtrl($rootScope, $state, $auth){
 
   function logout() {
     $auth.logout();
-    $state.go('register');
+    $state.go('tripsIndex');
   }
   vm.logout = logout;
 }
