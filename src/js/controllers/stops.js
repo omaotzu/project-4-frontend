@@ -20,4 +20,15 @@ function StopsShowCtrl(Stop, Post, $stateParams) {
   }
   vm.addPost = addPost;
 
+
+  function deletePost(post) {
+    Post
+      .delete({ id: post.id })
+      .$promise
+      .then(() => {
+        const index = vm.stop.posts.indexOf(post);
+        vm.stop.posts.splice(index, 1);
+      });
+  }
+  vm.deletePost = deletePost;
 }
