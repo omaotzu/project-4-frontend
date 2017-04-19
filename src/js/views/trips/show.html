@@ -4,7 +4,7 @@
 
   <ul>
     <li ng-repeat="stop in tripsShow.trip.stops">
-      <a ui-sref="stopsShow({ id: stop.id })">{{ stop.place }} - {{ stop.start_date | date }} to {{ stop.leave_date | date }}</a>
+      <a ui-sref="stopsShow({ id: stop.id })">{{ stop.place }}, {{ stop.country }} - {{ stop.start_date | date }} to {{ stop.leave_date | date }}</a>
       <button ng-click="tripsShow.deleteStop(stop)">x</button>
     </li>
   </ul>
