@@ -3,8 +3,8 @@ angular
   .controller('UsersShowCtrl', UsersShowCtrl)
   .controller('UsersEditCtrl', UsersEditCtrl);
 
-UsersShowCtrl.$inject = ['User', '$stateParams', '$state', '$auth'];
-function UsersShowCtrl(User, $stateParams, $state, $auth) {
+UsersShowCtrl.$inject = ['User', 'Trip', '$stateParams', '$state', '$auth'];
+function UsersShowCtrl(User, Trip, $stateParams, $state, $auth) {
   const vm = this;
   vm.user = User.get($stateParams);
 
@@ -18,6 +18,17 @@ function UsersShowCtrl(User, $stateParams, $state, $auth) {
       });
   }
   vm.delete = usersDelete;
+
+  function deleteTrip(trip) {
+    Trip
+      .delete({ id: trip.id })
+      .$promise
+      .then(() => {
+        const index = vm.user.trips.indexOf(trip);
+        vm.user.trips.splice(index, 1);
+      });
+  }
+  vm.deleteTrip = deleteTrip;
 }
 
 UsersEditCtrl.$inject = ['User', '$stateParams', '$state'];

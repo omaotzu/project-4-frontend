@@ -1,4 +1,4 @@
-angular
+  angular
   .module('myGuideBlog')
   .controller('TripsIndexCtrl', TripsIndexCtrl)
   .controller('TripsNewCtrl', TripsNewCtrl)
@@ -29,6 +29,18 @@ TripsShowCtrl.$inject = ['Trip', 'Stop', '$stateParams', 'filterFilter', '$scope
 function TripsShowCtrl(Trip, Stop, $stateParams, filterFilter, $scope) {
   const vm = this;
   vm.trip = Trip.get($stateParams);
+  vm.tripStartDate;
+  vm.tripLeaveDate;
+
+  Trip
+    .get($stateParams)
+    .$promise
+    .then(() => {
+      console.log(vm.trip);
+      vm.tripStartDate = moment(vm.trip.start_date).format('YYYY-MM-DD').toString();
+      vm.tripLeaveDate = moment(new Date(vm.trip.leave_date)).format('YYYY-MM-DD');
+      console.log(vm.tripLeaveDate);
+    });
 
   function addStop() {
     vm.stop.trip_id = vm.trip.id;

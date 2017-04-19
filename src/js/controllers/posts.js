@@ -10,7 +10,6 @@ function PostsShowCtrl(Post, Comment, $stateParams) {
   function addComment() {
     vm.comment.post_id = vm.post.id;
 
-
     Comment
       .save({ comment: vm.comment })
       .$promise
