@@ -11,7 +11,8 @@ function autocomplete($window) {
     scope: {
       lat: '=',
       lng: '=',
-      place: '='
+      place: '=',
+      country: '='
     },
     link: function($scope, element, attrs, model) {
       const options = {
@@ -22,9 +23,11 @@ function autocomplete($window) {
 
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
+        console.log(place.address_components[place.address_components.length-1].long_name);
+        $scope.place = place.address_components[0].long_name;
+        $scope.country = place.address_components[place.address_components.length-1].long_name;
         $scope.lat = place.geometry.location.toJSON().lat;
         $scope.lng = place.geometry.location.toJSON().lng;
-        $scope.place = place.address_components[0].long_name;
         model.$setViewValue(element.val());
       });
     }
