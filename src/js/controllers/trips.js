@@ -30,30 +30,30 @@ TripsShowCtrl.$inject = ['Trip', 'Stop', '$stateParams', 'filterFilter', '$scope
 function TripsShowCtrl(Trip, Stop, $stateParams, filterFilter, $scope) {
   const vm = this;
   vm.trip = Trip.get($stateParams);
-  vm.tripStartDate;
-  vm.tripLeaveDate;
+  vm.tripStartDate = {};
+  vm.tripLeaveDate = {};
 
   Trip
     .get($stateParams)
     .$promise
-    .then(() => {
-      console.log(vm.trip);
-      vm.tripStartDate = moment(vm.trip.start_date).format('YYYY-MM-DD').toString();
-      vm.tripLeaveDate = moment(new Date(vm.trip.leave_date)).format('YYYY-MM-DD');
-      console.log(vm.tripLeaveDate);
+    .then((trip) => {
+      vm.startDate = moment(vm.trip.start_date).format('YYYY-MM-DD').toString();
+      vm.leaveDate = moment(vm.trip.leave_date).format('YYYY-MM-DD').toString();
     });
 
   function addStop() {
     vm.stop.trip_id = vm.trip.id;
     vm.stop.lat = vm.info.lat;
     vm.stop.lng = vm.info.lng;
-    vm.stop.place = vm.info.name;
+    vm.stop.place = vm.info.place;
+    vm.stop.country = vm.info.country;
 
     Stop
       .save({ stop: vm.stop })
       .$promise
       .then((stop) => {
         vm.trip.stops.push(stop);
+        console.log(vm.stop);
         vm.stop = {};
       });
     vm.city = null;
