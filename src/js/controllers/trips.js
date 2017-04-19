@@ -28,7 +28,19 @@ function TripsNewCtrl(Trip, User, $state, $auth) {
 TripsShowCtrl.$inject = ['Trip', 'Stop', '$stateParams', 'filterFilter', '$scope'];
 function TripsShowCtrl(Trip, Stop, $stateParams, filterFilter, $scope) {
   const vm = this;
+  vm.startDate = {};
+  vm.leaveDate = {};
   vm.trip = Trip.get($stateParams);
+  Trip
+    .get($stateParams)
+    .$promise
+    .then(() => {
+      console.log(vm.trip);
+      vm.startDate = new Date(vm.trip.start_date);
+      console.log(vm.startDate);
+      vm.leaveDate = new Date(vm.trip.leave_date);
+      console.log(vm.leaveDate);
+    });
 
   function addStop() {
     vm.stop.trip_id = vm.trip.id;
