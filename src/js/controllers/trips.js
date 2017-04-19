@@ -5,20 +5,19 @@ angular
 .controller('TripsNewCtrl', TripsNewCtrl)
 .controller('TripsShowCtrl', TripsShowCtrl);
 
-TripsIndexCtrl.$inject = ['Trip'];
-function TripsIndexCtrl(Trip) {
+TripsIndexCtrl.$inject = ['Trip', 'Stop'];
+function TripsIndexCtrl(Trip, Stop) {
   const vm = this;
-  vm.locations = [
-    {lat: -31.563910, lng: 147.154312},
-    {lat: -33.718234, lng: 150.363181},
-    {lat: -33.727111, lng: 150.371124},
-    {lat: -33.848588, lng: 151.209834},
-    {lat: -33.851702, lng: 151.216968},
-    {lat: -34.671264, lng: 150.863657}
-  ];
-  console.log(vm.locations);
 
   vm.allTrips = Trip.query();
+  vm.allStops = Stop.query();
+  console.log(vm.allStops);
+  // vm.latLng = vm.allStops.map((stop, i) => {
+  //   console.log(stop);
+  //   lat: stop.lat,
+  //   lng: stop.lng
+  // });
+
   initMap();
 
   function initMap() {
