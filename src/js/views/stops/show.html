@@ -12,8 +12,12 @@
     <textarea class="form-group" ng-model="stopsShow.post.body"></textarea>
   </div>
 
-  <button>Post</button>
+  <div class="form-group">
+    <label for="base64">Image</label>
+    <input type="file" base64 name="base64" id="base64" ng-model="stopsShow.post.base64">
+  </div>
 
+  <button>Post</button>
 </form>
 
 

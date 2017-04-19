@@ -1,12 +1,16 @@
-<h1>{{ postsShow.post.title }}</h1>
-<p>{{ postsShow.post.body }}</p>
+<div class="container">
+  <div>
+    <h3>{{ postsShow.post.title }}</h3>
+    <p>{{ postsShow.post.body }}</p>
+    <img ng-src="{{postsShow.post.image_src}}">
+  </div>
+  <div ng-repeat="comment in postsShow.post.comments">
+    <p>{{ comment.body }} - <strong>{{ comment.user.first_name }}</strong></p>
+  </div>
 
-<div ng-repeat="comment in postsShow.post.comments">
-  {{ comment.body }} - {{ comment.user.first_name }}
+  <h2>Add Comment</h2>
+  <form ng-submit="postsShow.addComment()">
+    <textarea type="text" name="body" ng-model="postsShow.comment.body"></textarea>
+    <button>Create</button>
+  </form>
 </div>
-
-<h2>Add Comment</h2>
-<form ng-submit="postsShow.addComment()">
-  <textarea type="text" name="body" ng-model="postsShow.comment.body"></textarea>
-  <button>Create</button>
-</form>
