@@ -1,8 +1,9 @@
-  angular
-  .module('myGuideBlog')
-  .controller('TripsIndexCtrl', TripsIndexCtrl)
-  .controller('TripsNewCtrl', TripsNewCtrl)
-  .controller('TripsShowCtrl', TripsShowCtrl);
+/* global moment:true */
+angular
+.module('myGuideBlog')
+.controller('TripsIndexCtrl', TripsIndexCtrl)
+.controller('TripsNewCtrl', TripsNewCtrl)
+.controller('TripsShowCtrl', TripsShowCtrl);
 
 TripsIndexCtrl.$inject = ['Trip'];
 function TripsIndexCtrl(Trip) {

@@ -2,11 +2,29 @@
   <div>
     <h3>{{ postsShow.post.title }}</h3>
     <p>{{ postsShow.post.body }}</p>
-    <img ng-src="{{postsShow.post.image_src}}">
   </div>
+
+
+  <div ng-repeat="image in postsShow.post.images">
+    <img ng-src="{{image.image_src}}">
+    <button ng-click="postsShow.deleteImage(image)">x</button>
+  </div>
+    <!-- <img ng-src="{{postsShow.post.image_src}}"> -->
+
+  <form ng-submit="postsShow.addImage()">
+    <div class="form-group">
+      <label for="base64">Image</label>
+      <input type="file" base64 name="base64" id="base64" ng-model="postsShow.image.base64">
+      <button>Upload</button>
+    </div>
+  </form>
+
+
   <div ng-repeat="comment in postsShow.post.comments">
     <p>{{ comment.body }} - <strong>{{ comment.user.first_name }}</strong></p>
+    <button ng-click="postsShow.deleteComment(comment)">x</button>
   </div>
+
 
   <h2>Add Comment</h2>
   <form ng-submit="postsShow.addComment()">
