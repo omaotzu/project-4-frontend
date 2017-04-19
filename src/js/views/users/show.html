@@ -1,5 +1,6 @@
 <div>
   <h3>{{usersShow.user.full_name}}</h3>
+  <img ng-src="{{usersShow.user.image_src}}">
   <ul>
     <li ng-repeat="trip in usersShow.user.trips">{{ trip }}
       <button ui-sref="tripsShow({ id: trip.id })">Show</button>
