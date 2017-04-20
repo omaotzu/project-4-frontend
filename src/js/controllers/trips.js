@@ -5,8 +5,8 @@ angular
 .controller('TripsNewCtrl', TripsNewCtrl)
 .controller('TripsShowCtrl', TripsShowCtrl);
 
-TripsIndexCtrl.$inject = ['Trip', 'Post'];
-function TripsIndexCtrl(Trip, Post) {
+TripsIndexCtrl.$inject = ['Trip', 'Post', 'Stop'];
+function TripsIndexCtrl(Trip, Post, Stop) {
   const vm = this;
 
   vm.allTrips = Trip.query();
@@ -20,7 +20,6 @@ function TripsIndexCtrl(Trip, Post) {
           lng: post.stop.lng
         };
       });
-      console.log(vm.allPosts);
       initMap();
     });
 
@@ -32,15 +31,48 @@ function TripsIndexCtrl(Trip, Post) {
       scrollwheel: false
     });
 
-    vm.markers = vm.allPosts.map(function(location) {
+    vm.marker = vm.allPosts.map(function(location) {
       return new google.maps.Marker({
         position: location
       });
     });
+    vm.marker.forEach((marker) => {
+      marker.addListener('click', function() {
+        vm.map.setZoom(5);
+        vm.map.setCenter(marker.position);
+        infowindow.open(vm.map, marker);
+        vm.position = marker.position.toJSON();
 
-    vm.markerCluster = new MarkerClusterer(vm.map, vm.markers,
-      {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
-    );
+        Stop
+          .query(vm.position)
+          .$promise
+          .then((stops) => {
+            vm.filteredStops = stops[0].posts;
+          });
+      });
+    });
+
+    vm.markerCluster = new MarkerClusterer(vm.map, vm.marker,{
+      imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+      zoomOnClick: false,
+      maxZoom: 7
+    });
+
+    var infowindow = new google.maps.InfoWindow({ content: '<p>HEEEEYYYY</p>' });
+
+
+    google.maps.event.addListener(vm.markerCluster, 'clusterclick', function(cluster) {
+      vm.map.setZoom(5);
+      vm.map.setCenter(cluster.getCenter());
+      vm.position = cluster.getCenter().toJSON();
+
+      Stop
+        .query(vm.position)
+        .$promise
+        .then((stops) => {
+          vm.filteredStops = stops[0].posts;
+        });
+    });
   }
 }
 

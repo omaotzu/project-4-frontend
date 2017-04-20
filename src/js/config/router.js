@@ -8,10 +8,10 @@ function Router($urlRouterProvider, $locationProvider, $stateProvider) {
   $locationProvider.html5Mode(true);
 
   $stateProvider
-    .state('home', {
-      url: '/',
-      templateUrl: 'js/views/auth/home.html'
-    })
+    // .state('home', {
+    //   url: '/',
+    //   templateUrl: 'js/views/auth/home.html'
+    // })
     .state('register', {
       url: '/register',
       templateUrl: 'js/views/auth/register.html',
