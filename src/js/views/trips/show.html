@@ -1,27 +1,93 @@
 <div class="container">
-  <h1>{{ tripsShow.trip.trip_name }}</h1>
-  <p>From {{ tripsShow.trip.start_date | date }} until {{ tripsShow.trip.leave_date | date }}</p>
+  <div class="row">
+    <h1>{{ tripsShow.trip.trip_name }}</h1>
+    <p>From {{ tripsShow.trip.start_date | date }} until {{ tripsShow.trip.leave_date | date }}</p>
+  </div>
 
-  <ul>
-    <li ng-repeat="stop in tripsShow.trip.stops">
-      <button ng-click="tripsShow.deleteStop(stop)" class="deleteButton">X</button>
-      <a ui-sref="stopsShow({ id: stop.id })">{{ stop.place }}, {{ stop.country }} - {{ stop.start_date | date }} to {{ stop.leave_date | date }}</a>
-    </li>
-  </ul>
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Current Stops</h3>
+      <ul>
+        <li ng-repeat="stop in tripsShow.trip.stops">
+          <button ng-click="tripsShow.deleteStop(stop)" class="deleteButton">X</button>
+          <a ui-sref="stopsShow({ id: stop.id })">{{ stop.place }}, {{ stop.country }} - {{ stop.start_date | date }} to {{ stop.leave_date | date }}</a>
+        </li>
+      </ul>
+    </div>
 
-  <form ng-submit="tripsShow.addStop()" class="form-group">
-    <div>
-      <label for="place">Place</label>
-      <input name="place" autocomplete ng-model="tripsShow.city" lat="tripsShow.info.lat" lng="tripsShow.info.lng" place="tripsShow.info.place" country="tripsShow.info.country" class="form-control">
+    <div class="col-sm-6">
+      <h3>Add A Stop</h3>
+      <form ng-submit="tripsShow.addStop()" class="form-group">
+        <div>
+          <label for="place">Place</label>
+          <input name="place" autocomplete ng-model="tripsShow.city" lat="tripsShow.info.lat" lng="tripsShow.info.lng" place="tripsShow.info.place" country="tripsShow.info.country" class="form-control">
+        </div>
+        <div>
+          <label for="start_date">Start Date</label>
+          <input type="date" name="start_date" min="{{ tripsShow.startDate }}" max="{{ tripsShow.leaveDate }}" ng-model="tripsShow.stop.start_date" class="form-control">
+        </div>
+        <div>
+          <label for="leave_date">Leave Date</label>
+          <input type="date" name="leave_date" min="{{ tripsShow.startDate }}" max="{{ tripsShow.leaveDate }}" ng-model="tripsShow.stop.leave_date" class="form-control">
+        </div>
+        <button>Add</button>
+      </form>
     </div>
-    <div>
-      <label for="start_date">Start Date</label>
-      <input type="date" name="start_date" min="{{ tripsShow.startDate }}" max="{{ tripsShow.leaveDate }}" ng-model="tripsShow.stop.start_date" class="form-control">
+  </div>
+  <div class="col-sm-6">
+    <form ng-submit="tripsShow.getFlights()" class="form-group">
+      <div>
+        <label for="origin">Origin Location</label>
+        <select ng-model="tripsShow.origin">
+          <option ng-repeat="stop in tripsShow.trip.stops" value="{{stop.lat}},{{stop.lng}}">{{stop.place}}</option>
+        </select>
+      </div>
+      <div>
+        <label for="destination">Destination Location</label>
+        <select ng-model="tripsShow.destination">
+          <option ng-repeat="stop in tripsShow.trip.stops" value="{{stop.lat}},{{stop.lng}}">{{stop.place}}</option>
+        </select>
+      </div>
+      <div>
+        <label for="outboundDate">Outbound Date</label>
+        <input type="date" name="outboundDate" min="{{ tripsShow.startDate }}" max="{{ tripsShow.leaveDate }}" ng-model="tripsShow.outboundDate">
+      </div>
+      <button>Get Flights</button>
+    </form>
+  </div>
+  <div class="col-sm-6">
+    <div class="row">
+      <h3>Flight Results</h3>
+      <div class="col-md-3">
+        <h5>City</h5>
+      </div>
+      <div class="col-md-3">
+        <h5>Country</h5>
+      </div>
+      <div class="col-md-3">
+        <h5>Price</h5>
+      </div>
+      <div class="col-md-3">
+        <h5>Airline</h5>
+      </div>
     </div>
-    <div>
-      <label for="leave_date">Leave Date</label>
-      <input type="date" name="leave_date" min="{{ tripsShow.startDate }}" max="{{ tripsShow.leaveDate }}" ng-model="tripsShow.stop.leave_date" class="form-control">
-    </div>
-    <button>Add</button>
-  </form>
+    <ul>
+      <li ng-repeat="flight in tripsShow.flights">
+        <div class="row">
+          <div class="col-md-3">
+            <p>{{ flight.DestinationCity}}</p>
+          </div>
+          <div class="col-md-3">
+            <p>{{ flight.DestinationCountry}}</p>
+          </div>
+          <div class="col-md-3">
+            <p>£{{ flight.MinPrice}}</p>
+          </div>
+          <div class="col-md-3">
+            <p>{{ flight.CarrierName}}</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
