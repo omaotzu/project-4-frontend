@@ -82,11 +82,19 @@ function TripsNewCtrl(Trip, User, $state, $auth) {
   vm.trip = {};
   vm.allUsers = User.query();
 
+
+
   function tripsCreate() {
+    vm.trip.start_date = new Date(vm.trip.start_date.getTime() + (2*1000*60*60));
+    vm.trip.leave_date = new Date(vm.trip.leave_date.getTime() + (2*1000*60*60));
+
     Trip
       .save({ trip: vm.trip })
       .$promise
-      .then(() => $state.go('usersShow', { id: $auth.getPayload().id }));
+      .then(() => {
+        $state.go('usersShow', { id: $auth.getPayload().id });
+
+      });
   }
   vm.create = tripsCreate;
 }
@@ -105,6 +113,7 @@ function TripsShowCtrl(Trip, Stop, $stateParams, filterFilter, $scope) {
       vm.startDate = moment(vm.trip.start_date).format('YYYY-MM-DD').toString();
       vm.leaveDate = moment(vm.trip.leave_date).format('YYYY-MM-DD').toString();
     });
+
 
   function addStop() {
     vm.stop.trip_id = vm.trip.id;

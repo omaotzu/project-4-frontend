@@ -43,11 +43,11 @@
       </div>
 
       <div>
-        <label for="passwordConfirmation">Password Confirmation</label>
-        <input type="password" name="passwordConfirmation" id="passwordConfirmation" class="form-control" ng-model="register.user.passwordConfirmation" required>
+        <label for="password_confirmation">Password _confirmation</label>
+        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" ng-model="register.user.password_confirmation" required>
       </div>
 
-      <div class="ng-message-error" ng-messages="register.registerForm.passwordConfirmation.$error" ng-show="(register.registerForm.$submitted || register.registerForm.passwordConfirmation.$touched)">
+      <div class="ng-message-error" ng-messages="register.registerForm.password_confirmation.$error" ng-show="(register.registerForm.$submitted || register.registerForm.password_confirmation.$touched)">
         <p ng-message="required">Your password confirmation is required.</p>
       </div>
 
