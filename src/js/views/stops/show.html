@@ -8,8 +8,25 @@
     </div>
 
     <div class="form-group">
-      <label for="post">Your Post</label>
-      <textarea class="form-group" ng-model="stopsShow.post.body"></textarea>
+      <label for="postBody">Your Post</label>
+      <textarea class="form-group" name="postBody" ng-model="stopsShow.post.body"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="valueForMoney">Value For Money</label>
+      <input type="number" class="form-group" name="valueForMoney" ng-model="stopsShow.post.value_for_money">
+    </div>
+    <div class="form-group">
+      <label for="nightLife">Night Life</label>
+      <input type="number" class="form-group" name="nightLife" ng-model="stopsShow.post.night_life">
+    </div>
+    <div class="form-group">
+      <label for="culture">Culture</label>
+      <input type="number" class="form-group" name="culture" ng-model="stopsShow.post.culture">
+    </div>
+    <div class="form-group">
+      <label for="hospitality">Hospitality</label>
+      <input type="number" class="form-group" name="hospitality" ng-model="stopsShow.post.hospitality">
     </div>
 
     <button>Post</button>

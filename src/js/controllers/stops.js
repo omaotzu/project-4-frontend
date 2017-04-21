@@ -7,7 +7,6 @@ function StopsShowCtrl(Stop, Post, $state, $stateParams) {
   const vm = this;
   vm.stop = Stop.get($stateParams);
 
-
   Stop
     .get($stateParams)
     .$promise
@@ -15,10 +14,10 @@ function StopsShowCtrl(Stop, Post, $state, $stateParams) {
       vm.postUserId = data.posts[0].user.id;
     });
 
-
   function addPost() {
+    console.log(vm.stop.id);
     vm.post.stop_id = vm.stop.id;
-
+    vm.updateStopId = vm.stop.id;
     Post
       .save({ post: vm.post })
       .$promise
@@ -29,7 +28,11 @@ function StopsShowCtrl(Stop, Post, $state, $stateParams) {
   }
   vm.addPost = addPost;
 
-
+  function forReal() {
+    console.log('for REAL?');
+    return true;
+  }
+  console.log(forReal());
 
   function deletePost(post) {
     Post
