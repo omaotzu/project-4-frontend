@@ -3,8 +3,9 @@
 <div id="map"></div>
 
 <div ng-repeat="post in tripsIndex.filteredStops">
-  <a ui-sref="postsShow({ id: post.id })" >
-    <h3>{{ post.title }} - <strong>{{ post.user.first_name }}</strong></h3>
+    <h3>
+      <a ui-sref="postsShow({ id: post.id })" >{{ post.title }}</a>
+       - <a ui-sref="usersShow({ id: post.user.id})"><strong>{{ post.user.username }}</strong></a>
+     </h3>
     <p>{{ post.body }}</p>
-  </a>
 </div>

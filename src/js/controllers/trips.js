@@ -24,9 +24,10 @@ function TripsIndexCtrl(Trip, Post, Stop) {
     });
 
 
+
   function initMap() {
     vm.map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 2,
+      zoom: 1,
       center: { lat: 10.755018, lng: 32.344179 },
       scrollwheel: false
     });
@@ -36,7 +37,9 @@ function TripsIndexCtrl(Trip, Post, Stop) {
         position: location
       });
     });
+
     vm.marker.forEach((marker) => {
+
       marker.addListener('click', function() {
         vm.map.setZoom(5);
         vm.map.setCenter(marker.position);
@@ -47,7 +50,12 @@ function TripsIndexCtrl(Trip, Post, Stop) {
           .query(vm.position)
           .$promise
           .then((stops) => {
-            vm.filteredStops = stops[0].posts;
+            vm.filteredStops = [];
+            stops.forEach((stop) => {
+              stop.posts.forEach((post) => {
+                vm.filteredStops.push(post);
+              });
+            });
           });
       });
     });
@@ -70,7 +78,12 @@ function TripsIndexCtrl(Trip, Post, Stop) {
         .query(vm.position)
         .$promise
         .then((stops) => {
-          vm.filteredStops = stops[0].posts;
+          vm.filteredStops = [];
+          stops.forEach((stop) => {
+            stop.posts.forEach((post) => {
+              vm.filteredStops.push(post);
+            });
+          });
         });
     });
   }
