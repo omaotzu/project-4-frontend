@@ -19,6 +19,9 @@
 <div>
   <div ng-repeat="post in stopsShow.stop.posts">
     <a ui-sref="postsShow({ id: post.id })"><strong>{{ post.title }}</strong><br> {{ post.body }}</a>
-    <button ng-click="stopsShow.deletePost(post)">x</button>
+    <button ng-click="stopsShow.upVote(post)">/\</button>
+    {{ post.get_upvotes.length }} / {{ post.get_downvotes.length }}
+    <button ng-click="stopsShow.downVote(post)">\/</button>
+    <button ng-click="stopsShow.deletePost(post)">X</button>
   </div>
 </div>

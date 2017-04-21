@@ -2,8 +2,8 @@ angular
   .module('myGuideBlog')
   .controller('StopsShowCtrl', StopsShowCtrl);
 
-StopsShowCtrl.$inject = ['Stop', 'Post', '$stateParams'];
-function StopsShowCtrl(Stop, Post, $stateParams) {
+StopsShowCtrl.$inject = ['Stop', 'Post', '$state', '$stateParams'];
+function StopsShowCtrl(Stop, Post, $state, $stateParams) {
   const vm = this;
   vm.stop = Stop.get($stateParams);
 
@@ -31,4 +31,26 @@ function StopsShowCtrl(Stop, Post, $stateParams) {
       });
   }
   vm.deletePost = deletePost;
+
+  function upVote(post) {
+    console.log('upvoting this', post);
+    Post
+      .upVote({ id: post.id })
+      .$promise
+      .then((result) => {
+        $state.reload();
+      });
+  }
+  vm.upVote = upVote;
+
+  function downVote(post) {
+    console.log('downvoting this', post);
+    Post
+      .downVote({ id: post.id })
+      .$promise
+      .then(() => {
+        $state.reload();
+      });
+  }
+  vm.downVote = downVote;
 }

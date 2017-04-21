@@ -53,4 +53,5 @@ function PostsShowCtrl(Post, Comment, Img, $stateParams) {
       });
   }
   vm.deleteComment = deleteComment;
+
 }
