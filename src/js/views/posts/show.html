@@ -4,11 +4,15 @@
     <p>{{ postsShow.post.body }}</p>
   </div>
 
-
-  <div ng-repeat="image in postsShow.post.images">
-    <img ng-src="{{image.image_src}}">
-    <button ng-click="postsShow.deleteImage(image)">x</button>
+  <div class="carousel" ng-if="postsShow.post.images.length > 0">
+    <div uib-carousel active="postsShow.active" interval="postsShow.interval" no-wrap="postsShow.noWrap">
+      <div uib-slide ng-repeat="image in postsShow.post.images" index="$index">
+        <img class="carouselImage" ng-src="{{ image.image_src }}">
+        <button ng-click="postsShow.deleteImage(image)">x</button>
+      </div>
+    </div>
   </div>
+
     <!-- <img ng-src="{{postsShow.post.image_src}}"> -->
 
   <form ng-submit="postsShow.addImage()">

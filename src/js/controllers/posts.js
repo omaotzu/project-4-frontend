@@ -6,7 +6,10 @@ PostsShowCtrl.$inject = ['Post', 'Comment', 'Img', '$stateParams'];
 function PostsShowCtrl(Post, Comment, Img, $stateParams) {
   const vm = this;
   vm.post = Post.get($stateParams);
-
+  vm.active = 0;
+  vm.interval = 5000;
+  vm.noWrap = false;
+  vm.test = [];
 
   function addImage() {
     vm.image.post_id = vm.post.id;
