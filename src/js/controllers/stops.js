@@ -7,15 +7,6 @@ function StopsShowCtrl(Stop, Post, $state, $stateParams) {
   const vm = this;
   vm.stop = Stop.get($stateParams);
 
-  Stop
-    .get($stateParams)
-    .$promise
-    .then((data) => {
-      if (data.posts[0]) {
-        vm.postUserId = data.posts[0].user.id;
-      }
-    });
-
   function addPost() {
     vm.post.stop_id = vm.stop.id;
     vm.updateStopId = vm.stop.id;

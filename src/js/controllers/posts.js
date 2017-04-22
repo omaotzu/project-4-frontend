@@ -14,6 +14,7 @@ function PostsShowCtrl(Post, Comment, Img, $stateParams) {
       .save({ image: vm.image })
       .$promise
       .then((image) => {
+        console.log(vm.post);
         vm.post.images.push(image);
         vm.image = {};
       });

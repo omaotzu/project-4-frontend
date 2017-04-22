@@ -1,7 +1,7 @@
 <div class="container">
   <h1>{{ stopsShow.stop.place }}</h1>
   <div>
-    <form ng-submit="stopsShow.addPost()" ng-if="main.isAuthenticated()">
+    <form ng-submit="stopsShow.addPost()" ng-if="main.isAuthenticated() && main.currentUser.id === stopsShow.stop.user.id">
       <div class="form-group">
         <label for="title">Title</label>
         <input type="text" name="title" ng-model="stopsShow.post.title">
@@ -29,7 +29,6 @@
       <button>Post</button>
     </form>
   </div>
-
   <div>
     <div ng-repeat="post in stopsShow.stop.posts" class= "col-md-6">
       <a ui-sref="postsShow({ id: post.id })"><strong>{{ post.title }}</strong></a>
@@ -38,7 +37,7 @@
       <button ng-if="main.isAuthenticated()" ng-click="stopsShow.upVote(post)">&#128077;</button>
       {{ post.get_upvotes.length }} / {{ post.get_downvotes.length }}
       <button ng-if="main.isAuthenticated()" ng-click="stopsShow.downVote(post)">&#128078;</button>
-      <button ng-if="main.isAuthenticated() && main.currentUser.id === stopsShow.postUserId" ng-click="stopsShow.deletePost(post)">X</button>
+      <button ng-if="main.isAuthenticated() && main.currentUser.id === post.user.id" ng-click="stopsShow.deletePost(post)">X</button>
     </div>
   </div>
 </div>
