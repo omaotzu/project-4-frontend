@@ -4,12 +4,11 @@
     <p>{{ postsShow.post.body }}</p>
   </div>
 
-
   <div ng-repeat="image in postsShow.post.images">
     <img ng-src="{{image.image_src}}">
-    <button ng-click="postsShow.deleteImage(image)">x</button>
+    <button ng-if="main.isAuthenticated() && main.currentUser.id === stopsShow.post.user_id" ng-click="postsShow.deleteImage(image)">x</button>
   </div>
-    <!-- <img ng-src="{{postsShow.post.image_src}}"> -->
+
 
   <form ng-submit="postsShow.addImage()">
     <div class="form-group">
