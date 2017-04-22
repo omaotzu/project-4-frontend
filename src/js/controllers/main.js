@@ -6,6 +6,8 @@ MainCtrl.$inject = ['$rootScope', '$state', '$auth'];
 function MainCtrl($rootScope, $state, $auth){
   const vm = this;
   vm.isAuthenticated = $auth.isAuthenticated;
+  vm.isNavCollapsed = true;
+  vm.isCollapsed = false;
 
   $rootScope.$on('error', (e, err) => {
     vm.stateHasChanged = false;

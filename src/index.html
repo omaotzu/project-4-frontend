@@ -13,16 +13,27 @@
     <!-- endinject -->
   </head>
   <body ng-controller= "MainCtrl as main">
-    <nav>
-      <ul>
-        <li><a ui-sref="tripsIndex">WorldBlog</a></li>
-        <li ng-if="main.isAuthenticated()"><a ui-sref="tripsNew">Add a Trip</a></li>
-        <li ng-if="!main.isAuthenticated()"><a ui-sref="login">Login</a></li>
-        <li ng-if="!main.isAuthenticated()"><a ui-sref="register">Register</a></li>
-        <li ng-if="main.isAuthenticated()"><a ui-sref="usersShow({ id: main.currentUser.id })">Profile</a></li>
-        <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" href="#">Logout</a></li>
-      </ul>
-    </nav>
+
+    <nav class="navbar navbar-default" role="navigation">
+  		<div class="navbar-header">
+  			<button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+  				<span class="sr-only">Toggle navigation</span>
+  				<span class="icon-bar"></span>
+  				<span class="icon-bar"></span>
+  				<span class="icon-bar"></span>
+  			</button>
+  		</div>
+  		<div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+  			<ul class="nav navbar-nav">
+          <li><a ui-sref="tripsIndex">WorldBlog</a></li>
+          <li ng-if="main.isAuthenticated()"><a ui-sref="tripsNew">Add a Trip</a></li>
+          <li ng-if="!main.isAuthenticated()"><a ui-sref="login">Login</a></li>
+          <li ng-if="!main.isAuthenticated()"><a ui-sref="register">Register</a></li>
+          <li ng-if="main.isAuthenticated()"><a ui-sref="usersShow({ id: main.currentUser.id })">Profile</a></li>
+          <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" href="#">Logout</a></li>
+  			</ul>
+  		</div>
+  	</nav>
     <main ui-view></main>
   </body>
 </html>

@@ -1,3 +1,11 @@
+.horizontal-collapse {
+  height: 70px;
+}
+
+.navbar-collapse.in {
+  overflow-y: hidden;
+}
+
 .deleteButton {
   border-radius: 100%;
 }
