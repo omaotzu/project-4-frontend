@@ -47,7 +47,7 @@ function TripsIndexCtrl(Trip, Post, Stop) {
         infowindow.open(vm.map, marker);
         vm.position = marker.position.toJSON();
         vm.numberOfClicks++;
-        
+
         Stop
           .query(vm.position)
           .$promise
@@ -118,7 +118,6 @@ function TripsNewCtrl(Trip, User, $state, $auth) {
   function tripsCreate() {
     vm.trip.start_date = new Date(vm.trip.start_date.getTime() + (2*1000*60*60));
     vm.trip.leave_date = new Date(vm.trip.leave_date.getTime() + (2*1000*60*60));
-
     Trip
       .save({ trip: vm.trip })
       .$promise
@@ -151,6 +150,9 @@ function TripsShowCtrl(Trip, Stop, $stateParams, filterFilter, $scope, skyscanne
     vm.stop.lng = vm.info.lng;
     vm.stop.place = vm.info.place;
     vm.stop.country = vm.info.country;
+
+    vm.stop.start_date = new Date(vm.stop.start_date.getTime() + (2*1000*60*60));
+    vm.stop.leave_date = new Date(vm.stop.leave_date.getTime() + (2*1000*60*60));
 
     Stop
       .save({ stop: vm.stop })
