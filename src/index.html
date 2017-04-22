@@ -34,6 +34,6 @@
   			</ul>
   		</div>
   	</nav>
-    <main ui-view></main>
+    <main ui-view ng-class="{'{{main.dailyImage}}': main.stateName === 'home'}"></main>
   </body>
 </html>

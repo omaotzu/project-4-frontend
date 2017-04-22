@@ -1,3 +1,15 @@
+main {
+  height: 100vh;
+}
+
+nav.navbar.navbar-default {
+  margin-bottom: 0px;
+}
+
+h1 {
+  margin-top: 0px;
+}
+
 .horizontal-collapse {
   height: 70px;
 }
@@ -28,4 +40,13 @@ li {
 
 #map {
   height: 50vh;
+}
+
+main.world {
+    background-image: url('../images/world1.jpg');
+}
+
+nav {
+  margin: 0;
+  margin-bottom: 0px;
 }

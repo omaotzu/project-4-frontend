@@ -21,6 +21,10 @@ function MainCtrl($rootScope, $state, $auth){
     if($auth.getPayload()) {
       vm.currentUser = $auth.getPayload();
     }
+    vm.stateName = $state.current.name;
+    vm.dailyImageArray = ['world'];
+    vm.dailyImage = vm.dailyImageArray[Math.floor(vm.dailyImageArray.length*Math.random())];
+    console.log(vm.dailyImage);
   });
 
   const protectedStates = ['someStatesWeDontHaveYet'];
