@@ -39,12 +39,14 @@ function TripsIndexCtrl(Trip, Post, Stop) {
     });
 
     vm.marker.forEach((marker) => {
-
       marker.addListener('click', function() {
-        vm.map.setZoom(5);
+        if (vm.numberOfClicks<1) {
+          vm.map.setZoom(5);
+        }
         vm.map.setCenter(marker.position);
         infowindow.open(vm.map, marker);
         vm.position = marker.position.toJSON();
+        vm.numberOfClicks++;
 
         Stop
           .query(vm.position)
@@ -69,22 +71,38 @@ function TripsIndexCtrl(Trip, Post, Stop) {
     var infowindow = new google.maps.InfoWindow({ content: '<p>HEEEEYYYY</p>' });
 
 
+    vm.numberOfClicks = 0;
+
+    google.maps.event.addListener(vm.map, 'zoom_changed', function() {
+      vm.zoomLevel = vm.map.getZoom();
+      if (vm.zoomLevel < 4) {
+        console.log('zoomed out');
+        vm.numberOfClicks = 0;
+      }
+    });
+
     google.maps.event.addListener(vm.markerCluster, 'clusterclick', function(cluster) {
-      vm.map.setZoom(5);
+      if (vm.numberOfClicks <1) {
+        vm.map.setZoom(6);
+      }
       vm.map.setCenter(cluster.getCenter());
       vm.position = cluster.getCenter().toJSON();
+      vm.numberOfClicks++;
 
-      Stop
-        .query(vm.position)
-        .$promise
-        .then((stops) => {
-          vm.filteredStops = [];
-          stops.forEach((stop) => {
-            stop.posts.forEach((post) => {
-              vm.filteredStops.push(post);
+      if(vm.map.zoom >=6 && vm.numberOfClicks >=2) {
+        Stop
+          .query(vm.position)
+          .$promise
+          .then((stops) => {
+            vm.filteredStops = [];
+            stops.forEach((stop) => {
+              stop.posts.forEach((post) => {
+                vm.filteredStops.push(post);
+              });
             });
           });
-        });
+      }
+
     });
   }
 }
@@ -100,7 +118,6 @@ function TripsNewCtrl(Trip, User, $state, $auth) {
   function tripsCreate() {
     vm.trip.start_date = new Date(vm.trip.start_date.getTime() + (2*1000*60*60));
     vm.trip.leave_date = new Date(vm.trip.leave_date.getTime() + (2*1000*60*60));
-
     Trip
       .save({ trip: vm.trip })
       .$promise
@@ -133,6 +150,9 @@ function TripsShowCtrl(Trip, Stop, $stateParams, filterFilter, $scope, skyscanne
     vm.stop.lng = vm.info.lng;
     vm.stop.place = vm.info.place;
     vm.stop.country = vm.info.country;
+
+    vm.stop.start_date = new Date(vm.stop.start_date.getTime() + (2*1000*60*60));
+    vm.stop.leave_date = new Date(vm.stop.leave_date.getTime() + (2*1000*60*60));
 
     Stop
       .save({ stop: vm.stop })

@@ -8,12 +8,10 @@
     <div uib-carousel active="postsShow.active" interval="postsShow.interval" no-wrap="postsShow.noWrap">
       <div uib-slide ng-repeat="image in postsShow.post.images" index="$index">
         <img class="carouselImage" ng-src="{{ image.image_src }}">
-        <button ng-click="postsShow.deleteImage(image)">x</button>
+        <button ng-if="main.isAuthenticated() && main.currentUser.id === stopsShow.post.user_id" ng-click="postsShow.deleteImage(image)">x</button>
       </div>
     </div>
   </div>
-
-    <!-- <img ng-src="{{postsShow.post.image_src}}"> -->
 
   <form ng-submit="postsShow.addImage()">
     <div class="form-group">
@@ -23,12 +21,10 @@
     </div>
   </form>
 
-
   <div ng-repeat="comment in postsShow.post.comments">
     <p>{{ comment.body }} - <strong>{{ comment.user.first_name }}</strong></p>
     <button ng-click="postsShow.deleteComment(comment)">x</button>
   </div>
-
 
   <h2>Add Comment</h2>
   <form ng-submit="postsShow.addComment()">

@@ -12,7 +12,9 @@ function StopsShowCtrl(Stop, Post, $state, $stateParams) {
     .get($stateParams)
     .$promise
     .then((data) => {
-      vm.postUserId = data.posts[0].user.id;
+      if (data.posts[0]) {
+        vm.postUserId = data.posts[0].user.id;
+      }
     });
 
   function addPost() {
@@ -25,7 +27,9 @@ function StopsShowCtrl(Stop, Post, $state, $stateParams) {
         vm.stop.posts.push(post);
         vm.post = {};
       });
+    console.log(vm.post);
   }
+
   vm.addPost = addPost;
 
   function forReal() {
