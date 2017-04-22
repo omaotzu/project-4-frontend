@@ -6,10 +6,11 @@ StopsShowCtrl.$inject = ['Stop', 'Post', '$state', '$stateParams'];
 function StopsShowCtrl(Stop, Post, $state, $stateParams) {
   const vm = this;
   vm.stop = Stop.get($stateParams);
+  vm.isReadOnly = false;
 
   function addPost() {
     vm.post.stop_id = vm.stop.id;
-    vm.updateStopId = vm.stop.id;
+
     Post
       .save({ post: vm.post })
       .$promise

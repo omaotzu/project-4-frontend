@@ -1,5 +1,25 @@
+.horizontal-collapse {
+  height: 70px;
+}
+
+.dailyImage {
+  height: 100vh;
+}
+
+.navbar-collapse.in {
+  overflow-y: hidden;
+}
+
 .deleteButton {
   border-radius: 100%;
+}
+
+.carousel {
+  height: 300px;
+}
+
+.carouselImage {
+  height: 300px;
 }
 
 li {

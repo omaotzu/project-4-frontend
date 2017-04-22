@@ -4,29 +4,29 @@
     <p>{{ postsShow.post.body }}</p>
   </div>
 
-  <div ng-repeat="image in postsShow.post.images">
-    <img ng-src="{{image.image_src}}">
-    <button ng-if="main.isAuthenticated()" ng-click="postsShow.deleteImage(image)">x</button>
+  <div class="carousel" ng-if="postsShow.post.images.length > 0">
+    <div uib-carousel active="postsShow.active" interval="postsShow.interval" no-wrap="postsShow.noWrap">
+      <div uib-slide ng-repeat="image in postsShow.post.images" index="$index">
+        <img class="carouselImage" ng-src="{{ image.image_src }}">
+        <button ng-if="main.isAuthenticated() && main.currentUser.id === image.user.id" ng-click="postsShow.deleteImage(image)">x</button>
+      </div>
+    </div>
   </div>
-
-
-  <form ng-submit="postsShow.addImage()">
+  <form ng-submit="postsShow.addImage()" ng-if="main.isAuthenticated() && main.currentUser.id === postsShow.post.user.id">
     <div class="form-group">
       <label for="base64">Image</label>
       <input type="file" multiple base64 name="base64" id="base64" ng-model="postsShow.image.base64">
       <button>Upload</button>
     </div>
   </form>
-
-
+  <h2>Comments</h2>
   <div ng-repeat="comment in postsShow.post.comments">
-    <p>{{ comment.body }} - <strong>{{ comment.user.first_name }}</strong></p>
-    <button ng-click="postsShow.deleteComment(comment)">x</button>
+    <p>{{ comment.body }} - <strong>{{ comment.user.username }}</strong></p>
+    <button ng-click="postsShow.deleteComment(comment)" ng-if="main.isAuthenticated() && main.currentUser.id === comment.user.id">x</button>
   </div>
 
-
   <h2>Add Comment</h2>
-  <form ng-submit="postsShow.addComment()">
+  <form ng-submit="postsShow.addComment()" ng-if="main.isAuthenticated()">
     <textarea type="text" name="body" ng-model="postsShow.comment.body"></textarea>
     <button>Create</button>
   </form>
