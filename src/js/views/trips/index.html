@@ -1,8 +1,6 @@
 <div class="container">
   <h1>Stalk other people's trips here! Come one, come all. </h1>
-
   <div id="map"></div>
-
   <div ng-repeat="post in tripsIndex.filteredStops">
       <h3>
         <a ui-sref="postsShow({ id: post.id })" >{{ post.title }}</a>
