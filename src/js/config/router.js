@@ -58,5 +58,6 @@ function Router($urlRouterProvider, $locationProvider, $stateProvider) {
       templateUrl: 'js/views/users/edit.html',
       controller: 'UsersEditCtrl as usersEdit'
     });
+    
   $urlRouterProvider.otherwise('/');
 }
