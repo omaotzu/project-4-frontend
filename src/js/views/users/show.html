@@ -1,15 +1,17 @@
-<div>
-  <h3>{{usersShow.user.full_name}}</h3>
-  <button ng-if="main.isAuthenticated() && main.currentUser.id === usersShow.user.id" ui-sref="usersEdit({ id: usersShow.user.id })">Edit</button>
-  <button ng-if="main.isAuthenticated() && main.currentUser.id === usersShow.user.id" ng-click="usersShow.delete()">Delete</button>
-  <img ng-src="{{usersShow.user.image_src}}">
+<div class="container">
+  <div class="col-sm-12">
+    <h3>{{usersShow.user.full_name}}</h3>
+    <button ng-if="main.isAuthenticated() && main.currentUser.id === usersShow.user.id" ui-sref="usersEdit({ id: usersShow.user.id })">Edit</button>
+    <button ng-if="main.isAuthenticated() && main.currentUser.id === usersShow.user.id" ng-click="usersShow.delete()">Delete</button>
+    <img ng-src="{{usersShow.user.image_src}}">
 
-
-
-  <ul>
-    <li ng-repeat="trip in usersShow.user.trips">{{ trip }}
-      <button ui-sref="tripsShow({ id: trip.id })">Show</button>
-      <button ng-if="main.isAuthenticated() && main.currentUser.id === usersShow.user.id" ng-click="usersShow.deleteTrip(trip)">Delete</button>
-    </li>
-  </ul>
+    <ul>
+      <li ng-repeat="trip in usersShow.user.trips">
+        <strong>{{ trip.trip_name }}</strong>
+        <p>From {{ trip.start_date | date }} to {{ trip.leave_date | date }}</p>
+        <button ui-sref="tripsShow({ id: trip.id })">Show</button>
+        <button ng-if="main.isAuthenticated() && main.currentUser.id === usersShow.user.id" ng-click="usersShow.deleteTrip(trip)">Delete</button>
+      </li>
+    </ul>
+  </div>
 </div>

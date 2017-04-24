@@ -28,6 +28,7 @@ function MainCtrl($rootScope, $state, $auth, $scope){
   const protectedStates = ['someStatesWeDontHaveYet'];
 
   $rootScope.$on('$stateChangeStart', (e, toState) => {
+    $scope.isNavCollapsed = true;
     if(!$auth.isAuthenticated() && protectedStates.includes(toState.name)) {
       e.preventDefault();
       $state.go('login');

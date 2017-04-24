@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqunPN56wSjv3kna8IT0805pIX3f4fB3c&libraries=places"></script>
-    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaJSJC4P3kqKh9XBuF0TNHfbox5eKcMxI&callback=initMap"></script> -->
     <title>My Guide Blog</title>
     <!-- inject:js -->
     <!-- endinject -->
@@ -23,11 +22,11 @@
   		</div>
   		<div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
   			<ul class="nav navbar-nav">
-          <li><a ui-sref="tripsIndex">WorldBlog</a></li>
-          <li ng-if="main.isAuthenticated()"><a ui-sref="tripsNew">Add a Trip</a></li>
-          <li ng-if="!main.isAuthenticated()"><a ui-sref="login">Login</a></li>
-          <li ng-if="!main.isAuthenticated()"><a ui-sref="register">Register</a></li>
-          <li ng-if="main.isAuthenticated()"><a ui-sref="usersShow({ id: main.currentUser.id })">Profile</a></li>
+          <li ><a ui-sref="tripsIndex" ui-sref-active="active">WorldBlog</a></li>
+          <li ng-if="main.isAuthenticated()"><a ui-sref="tripsNew" ui-sref-active="active">Add a Trip</a></li>
+          <li ng-if="!main.isAuthenticated()"><a ui-sref="login" ui-sref-active="active">Login</a></li>
+          <li ng-if="!main.isAuthenticated()"><a ui-sref="register" ui-sref-active="active">Register</a></li>
+          <li ng-if="main.isAuthenticated()"><a ui-sref="usersShow({ id: main.currentUser.id })" ui-sref-active="active">Profile</a></li>
           <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" href="#">Logout</a></li>
   			</ul>
   		</div>
