@@ -46,7 +46,23 @@ function TripsIndexCtrl(Trip, Post, Stop) {
           vm.map.setZoom(5);
         }
         vm.map.setCenter(marker.position);
-        infowindow.open(vm.map, marker);
+
+        Stop
+          .query(vm.position)
+          .$promise
+          .then((stop) => {
+            vm.stop = stop;
+            console.log('VM STOP', vm.stop);
+            contentString = `<ul>
+                              <li>Value For Money: <br>${vm.stop[0].average_value_for_money}</li>
+                              <li>Night Life: <br>${vm.stop[0].average_night_life}</li>
+                              <li>Culture: <br>${vm.stop[0].average_culture}</li>
+                              <li>Hospitality: <br>${vm.stop[0].average_hospitality}</li>
+                            </ul>`;
+            const infoWindow = new google.maps.InfoWindow({ content: contentString });
+            infoWindow.open(vm.map, marker);
+          });
+
         vm.position = marker.position.toJSON();
         vm.numberOfClicks++;
 
@@ -69,8 +85,6 @@ function TripsIndexCtrl(Trip, Post, Stop) {
       zoomOnClick: false,
       maxZoom: 7
     });
-
-    var infowindow = new google.maps.InfoWindow({ content: '<p>HEEEEYYYY</p>' });
 
 
     vm.numberOfClicks = 0;
