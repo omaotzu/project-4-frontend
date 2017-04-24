@@ -25,7 +25,7 @@ function MainCtrl($rootScope, $state, $auth, $scope){
     vm.dailyImage = vm.dailyImageArray[Math.floor(vm.dailyImageArray.length*Math.random())];
   });
 
-  const protectedStates = ['someStatesWeDontHaveYet'];
+  const protectedStates = ['tripsNew', 'tripsEdit', 'usersEdit'];
 
   $rootScope.$on('$stateChangeStart', (e, toState) => {
     $scope.isNavCollapsed = true;

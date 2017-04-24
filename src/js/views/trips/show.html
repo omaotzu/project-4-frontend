@@ -2,6 +2,7 @@
   <div class="row">
     <h1>{{ tripsShow.trip.trip_name }}</h1>
     <p>From {{ tripsShow.trip.start_date | date }} until {{ tripsShow.trip.leave_date | date }}</p>
+    <button ng-if="main.isAuthenticated() && main.currentUser.id === tripsShow.trip.user.id" ui-sref="tripsEdit({ id: tripsShow.trip.id })">Edit</button>
   </div>
   <div class="row">
     <div class="col-sm-6">
