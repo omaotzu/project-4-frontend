@@ -1,33 +1,46 @@
 <div class="container">
-  <div>
-    <h3>{{ postsShow.post.title }}</h3>
-    <p>{{ postsShow.post.body }}</p>
+  <div class="row">
+    <div class="postContent">
+      <h3>{{ postsShow.post.title }}</h3>
+      <p>{{ postsShow.post.body }}</p>
+    </div>
   </div>
+
 
   <div class="carousel" ng-if="postsShow.post.images.length > 0">
     <div uib-carousel active="postsShow.active" interval="postsShow.interval" no-wrap="postsShow.noWrap">
       <div uib-slide ng-repeat="image in postsShow.post.images" index="$index">
-        <img class="carouselImage" ng-src="{{ image.image_src }}">
         <button ng-if="main.isAuthenticated() && main.currentUser.id === image.user.id" ng-click="postsShow.deleteImage(image)" class="deleteButton">x</button>
+        <img class="carouselImage" ng-src="{{ image.image_src }}">
       </div>
     </div>
   </div>
-  <form ng-submit="postsShow.addImage()" ng-if="main.isAuthenticated() && main.currentUser.id === postsShow.post.user.id">
-    <div class="form-group">
+
+  <form ng-submit="postsShow.addImage()" ng-if="main.isAuthenticated() && main.currentUser.id === postsShow.post.user.id" class="form-group authForm">
+    <h3>Upload Your Pics</h3>
+    <div>
       <label for="base64">Image</label>
-      <input type="file" multiple base64 name="base64" id="base64" ng-model="postsShow.image.base64">
+      <input type="file" base64 name="base64" id="base64" ng-model="postsShow.image.base64" class="form-control">
+    </div>
+    <div class="authButton">
       <button>Upload</button>
     </div>
   </form>
-  <h2>Comments</h2>
-  <div ng-repeat="comment in postsShow.post.comments">
-    <p>{{ comment.body }} - <strong>{{ comment.user.username }}</strong></p>
-    <button ng-click="postsShow.deleteComment(comment)" ng-if="main.isAuthenticated() && main.currentUser.id === comment.user.id">x</button>
+
+  <div class="comments">
+    <h2>Comments</h2>
+    <div ng-repeat="comment in postsShow.post.comments">
+      <p>{{ comment.body }} <br>- <strong>{{ comment.user.username }}</strong> <button ng-click="postsShow.deleteComment(comment)" ng-if="main.isAuthenticated() && main.currentUser.id === comment.user.id">x</button></p>
+    </div>
   </div>
 
-  <h2>Add Comment</h2>
-  <form ng-submit="postsShow.addComment()" ng-if="main.isAuthenticated()">
-    <textarea type="text" name="body" ng-model="postsShow.comment.body"></textarea>
-    <button>Create</button>
+  <form ng-submit="postsShow.addComment()" ng-if="main.isAuthenticated()" class="form-group authForm">
+    <h3>Add Comment</h3>
+    <div>
+      <textarea type="text" name="body" ng-model="postsShow.comment.body" class="form-control"></textarea>
+    </div>
+    <div class="authButton">
+      <button>Create</button>
+    </div>
   </form>
 </div>
