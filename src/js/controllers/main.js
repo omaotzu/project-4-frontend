@@ -26,7 +26,7 @@ function MainCtrl($rootScope, $state, $auth){
     vm.dailyImage = vm.dailyImageArray[Math.floor(vm.dailyImageArray.length*Math.random())];
   });
 
-  const protectedStates = ['someStatesWeDontHaveYet'];
+  const protectedStates = ['tripsNew', 'tripsEdit', 'usersEdit'];
 
   $rootScope.$on('$stateChangeStart', (e, toState) => {
     if(!$auth.isAuthenticated() && protectedStates.includes(toState.name)) {

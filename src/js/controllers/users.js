@@ -31,15 +31,26 @@ function UsersShowCtrl(User, Trip, $stateParams, $state, $auth) {
   vm.deleteTrip = deleteTrip;
 }
 
-UsersEditCtrl.$inject = ['User', '$stateParams', '$state'];
-function UsersEditCtrl(User, $stateParams, $state) {
+UsersEditCtrl.$inject = ['User', '$stateParams', '$state', '$auth'];
+function UsersEditCtrl(User, $stateParams, $state, $auth) {
   const vm = this;
-  vm.user = User.get($stateParams);
+  User
+    .get($stateParams)
+    .$promise
+    .then((data) => {
+      vm.user = data;
+      vm.user.id = data.id;
+    });
+
 
   function usersUpdate() {
-    User.update({ id: vm.user.id, user: vm.user })
-      .$promise
-      .then(() => $state.go('usersShow', $stateParams));
+    if ($auth.getPayload().id === vm.user.id) {
+      User.update({ id: vm.user.id, user: vm.user })
+        .$promise
+        .then(() => $state.go('usersShow', $stateParams));
+    }else {
+      $state.go('tripsIndex');
+    }
   }
   vm.update = usersUpdate;
 }

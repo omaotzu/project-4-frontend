@@ -1,0 +1,17 @@
+<div class="container">
+  <form ng-submit="tripsEdit.update()">
+
+    <h1>Create a new trip for your fine self.</h1>
+
+    <label for="trip_name">Name of your Trip</label>
+    <input type="text" name="trip_name" ng-model="tripsEdit.trip.trip_name">
+
+    <label for="start_date">Start Date</label>
+    <input type="date" name="start_date" ng-model="tripsEdit.trip.start_date">
+
+    <label for="leave_date">Leave Date</label>
+    <input type="date" name="leave_date" ng-model="tripsEdit.trip.leave_date">
+
+    <button>Update</button>
+  </form>
+</div>

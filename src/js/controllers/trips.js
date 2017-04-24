@@ -1,9 +1,10 @@
 /* global moment:true, google:true, MarkerClusterer:true */
 angular
-.module('myGuideBlog')
-.controller('TripsIndexCtrl', TripsIndexCtrl)
-.controller('TripsNewCtrl', TripsNewCtrl)
-.controller('TripsShowCtrl', TripsShowCtrl);
+  .module('myGuideBlog')
+  .controller('TripsIndexCtrl', TripsIndexCtrl)
+  .controller('TripsNewCtrl', TripsNewCtrl)
+  .controller('TripsShowCtrl', TripsShowCtrl)
+  .controller('TripsEditCtrl', TripsEditCtrl);
 
 TripsIndexCtrl.$inject = ['Trip', 'Post', 'Stop'];
 function TripsIndexCtrl(Trip, Post, Stop) {
@@ -133,8 +134,6 @@ TripsShowCtrl.$inject = ['Trip', 'Stop', '$stateParams', 'filterFilter', '$scope
 function TripsShowCtrl(Trip, Stop, $stateParams, filterFilter, $scope, skyscanner) {
   const vm = this;
   vm.trip = Trip.get($stateParams);
-  vm.tripStartDate = {};
-  vm.tripLeaveDate = {};
 
   Trip
     .get($stateParams)
@@ -184,4 +183,33 @@ function TripsShowCtrl(Trip, Stop, $stateParams, filterFilter, $scope, skyscanne
       });
   }
   vm.getFlights=getFlights;
+}
+
+TripsEditCtrl.$inject = ['Trip', '$stateParams', '$state', '$auth'];
+function TripsEditCtrl(Trip, $stateParams, $state, $auth) {
+  const vm = this;
+
+
+  Trip
+    .get($stateParams)
+    .$promise
+    .then((data) => {
+      vm.trip = data;
+      vm.trip.start_date = new Date(vm.trip.start_date);
+      vm.trip.leave_date = new Date(vm.trip.leave_date);
+    });
+
+
+  function tripsUpdate() {
+    if ($auth.getPayload().id === vm.trip.user.id) {
+      vm.trip.start_date = new Date(vm.trip.start_date.getTime() + (2*1000*60*60));
+      vm.trip.leave_date = new Date(vm.trip.leave_date.getTime() + (2*1000*60*60));
+      Trip.update({ id: vm.trip.id, trip: vm.trip })
+        .$promise
+        .then(() => $state.go('tripsShow', $stateParams));
+    }else{
+      $state.go('tripsShow', $stateParams, vm.message = 'You must own this trip in order to make changes');
+    }
+  }
+  vm.update = tripsUpdate;
 }
