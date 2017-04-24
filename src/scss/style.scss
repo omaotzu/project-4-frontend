@@ -1,12 +1,14 @@
 @import 'reset';
 
-$blue: #92A6DB;
+$blue: #253B77;
 $red: #752730;
+$green: lighten(#254D32, 10%);
+
 
 body {
   letter-spacing: 1px;
   font-family: 'BioRhyme', serif;
-
+  background: #FFFFFA;
 }
 main {
   height: 100vh;
@@ -171,6 +173,7 @@ main {
     .profileHeader {
       margin-bottom: 20px;
       h3 {
+        color: $green;
         font-size: 25px;
         display: inline-block;
       }
@@ -282,6 +285,7 @@ main {
   }
 
   h3 {
+    color: $green;
     font-size: 24px;
     margin-bottom: 10px;
   }
@@ -302,6 +306,7 @@ main {
   margin-top: 10px;
   margin-left: 20px;
   h3 {
+    color: $green;
     font-size: 24px;
     margin-bottom: 10px;
     font-weight: bold;
@@ -311,6 +316,7 @@ main {
 .addStopForm {
   min-height: 100%;
   h3 {
+    color: $green;
     font-size: 24px;
     margin-bottom: 10px;
     font-weight: bold;
@@ -327,6 +333,7 @@ main {
   margin: 30px auto;
   padding: 10px;
   h3 {
+    color: $green;
     font-size: 24px;
     margin-bottom: 10px;
     font-weight: bold;
@@ -342,6 +349,7 @@ main {
   border-top: none;
   margin: 0 auto;
   h3 {
+    color: $green;
     text-align: center;
     font-size: 24px;
     margin-bottom: 10px;
@@ -366,8 +374,9 @@ main {
 }
 
 .results {
-  padding: 5px 0;
+  margin-top: 5px;
   text-align: center;
+  height: 30px;
 }
 .biggerBottom{
   margin-bottom: 30px;
@@ -410,6 +419,7 @@ main {
   margin-top: 10px;
   margin-bottom: 20px;
   h3 {
+    color: $green;
     font-size: 24px;
     margin-bottom: 10px;
     font-weight: bold;
@@ -440,10 +450,12 @@ main {
 .tripsIndexPosts {
   margin-top: 30px;
   h3 {
+    color: $green;
     margin-bottom: 10px;
     font-weight: bold;
   }
   span {
+    color: $red;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     margin-right: 30px;
@@ -453,7 +465,7 @@ main {
 
 @media only screen and (min-width:600px) {
   .mapWrapper {
-    max-width: 600px;
+    max-width: 550px;
     text-align: center;
     margin-right: 0;
   }
