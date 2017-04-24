@@ -3,15 +3,18 @@ main {
   height: 100vh;
 }
 
+
 a {
   text-decoration: none;
   color: black;
   &:hover {
     text-decoration: none;
   }
+}
 
 img {
   height: 100%;
+
 }
 
 nav {
@@ -213,6 +216,7 @@ main {
     margin-bottom: 10px;
   }
 }
+
 
 .flightsForm {
   @extend .authForm;
