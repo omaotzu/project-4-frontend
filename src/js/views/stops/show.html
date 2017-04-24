@@ -46,7 +46,7 @@
   </div>
 
   <div>
-    <div ng-repeat="post in stopsShow.stop.posts" class="col-md-6 postDiv">
+    <div ng-repeat="post in stopsShow.stop.posts" class="col-sm-6 postDiv">
       <h2><a ui-sref="postsShow({ id: post.id })"><strong>{{ post.title }}</strong></a></h2>
       <br>
       <p class="postShowBody"><button ng-if="main.isAuthenticated() && main.currentUser.id === post.user.id" ng-click="stopsShow.deletePost(post)" class="deleteButton" >X</button>  {{ post.body }}</p>
