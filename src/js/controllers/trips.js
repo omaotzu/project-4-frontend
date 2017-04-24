@@ -21,9 +21,8 @@ function TripsIndexCtrl(Trip, Post, Stop) {
           lng: post.stop.lng
         };
       });
-      window.onload = initMap();
+      initMap();
     });
-
 
 
   function initMap() {

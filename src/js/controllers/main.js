@@ -12,7 +12,7 @@ function MainCtrl($rootScope, $state, $auth, $scope){
   $rootScope.$on('error', (e, err) => {
     vm.stateHasChanged = false;
     vm.message = err.data.message;
-    $state.go('login');
+
   });
 
   $rootScope.$on('$stateChangeSuccess', () => {
