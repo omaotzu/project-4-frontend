@@ -45,7 +45,7 @@ function StopsShowCtrl(Stop, Post, $state, $stateParams) {
     Post
       .upVote({ id: post.id })
       .$promise
-      .then((result) => {
+      .then(() => {
         $state.reload();
       });
   }

@@ -6,7 +6,7 @@ main {
 
 a {
   text-decoration: none;
-  color: black;
+  color: red;
   &:hover {
     text-decoration: none;
   }
@@ -90,7 +90,7 @@ li {
     overflow: hidden !important;
     position: relative;
     z-index: 2;
-    margin-right: 0;
+    margin: 0 auto;
     &:after {
       content: "";
       display: block;
@@ -163,7 +163,7 @@ main {
   }
 
   h3 {
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 10px;
   }
   .authButton {
@@ -183,7 +183,7 @@ main {
   margin-top: 10px;
   margin-left: 20px;
   h3 {
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 10px;
     font-weight: bold;
   }
@@ -192,7 +192,7 @@ main {
 .addStopForm {
   min-height: 100%;
   h3 {
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 10px;
     font-weight: bold;
     text-align: center;
@@ -208,7 +208,7 @@ main {
   margin: 30px auto;
   padding: 10px;
   h3 {
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 10px;
     font-weight: bold;
   }
@@ -224,7 +224,7 @@ main {
   margin: 0 auto;
   h3 {
     text-align: center;
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 10px;
     font-weight: bold;
   }
@@ -232,7 +232,7 @@ main {
 
 .flightResultTitle{
   text-align: center;
-  font-size: 18px;
+  font-size: 24px;
   margin: 10px 0;
   font-weight: bold;
 }
@@ -254,21 +254,38 @@ main {
   margin-bottom: 30px;
 }
 
+
 .stopHeader {
   margin: 10px 0;
   padding-bottom: 10px;
-  border-bottom: 2px solid black;
   h1 {
     span {
-      font-size: 18px;
+      font-size: 24px;
       font-weight: bold;
     }
   }
 }
 
+.rating{
+  padding: 10px 0;
+}
 
-
-
+.postDiv {
+  margin-bottom: 20px;
+  h2 {
+    font-size: 24px;
+    padding-bottom: 5px;
+  }
+  p{
+    margin-bottom: 10px;
+  }
+}
+.postShowBody{
+   max-width: 50%;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
 
 
 

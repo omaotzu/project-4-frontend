@@ -164,7 +164,8 @@ function TripsShowCtrl(Trip, Stop, $stateParams, filterFilter, $scope, skyscanne
         });
     }
     vm.city = null;
-    vm.stopForm.$pristine;
+    vm.stopForm.$setPristine();
+    vm.stopForm.$setUntouched();
   }
   vm.addStop = addStop;
 
