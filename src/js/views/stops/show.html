@@ -3,50 +3,57 @@
     <h1>Posts from <span>{{ stopsShow.stop.place }}</span></h1>
   </div>
   <div>
-    <form ng-submit="stopsShow.addPost()" ng-if="main.isAuthenticated() && main.currentUser.id === stopsShow.stop.user.id">
+    <form ng-submit="stopsShow.addPost()" name="stopsShow.stopForm" ng-if="main.isAuthenticated() && main.currentUser.id === stopsShow.stop.user.id" class="form-group authForm" novalidate>
       <div class="form-group">
         <label for="title">Title</label>
         <input class="form-control" type="text" name="title" ng-model="stopsShow.post.title" required>
+      </div>
+      <div class="ng-message-error" ng-messages="stopsShow.stopForm.title.$error" ng-show="(stopsShow.stopForm.$submitted || stopsShow.stopForm.title.$touched)">
+        <p ng-message="required">A Title is Required.</p>
       </div>
 
       <div class="form-group">
         <label for="postBody">Your Post</label>
         <textarea class="form-control" name="postBody" ng-model="stopsShow.post.body" required></textarea>
       </div>
+      <div class="ng-message-error" ng-messages="stopsShow.stopForm.postBody.$error" ng-show="(stopsShow.stopForm.$submitted || stopsShow.stopForm.postBody.$touched)">
+        <p ng-message="required">A Post is Required.</p>
+      </div>
 
       <div class="form-group">
         <label for="valueForMoney">Value For Money</label>
-        <span uib-rating name="valueForMoney" ng-model="stopsShow.post.value_for_money" max="5" read-only="isReadOnly"></span>
+        <p class="rating"><span uib-rating name="valueForMoney" ng-model="stopsShow.post.value_for_money" max="5" read-only="isReadOnly"></span></p>
       </div>
 
       <div class="form-group">
         <label for="nightLife">Night Life</label>
-        <span uib-rating name="nightLife" ng-model="stopsShow.post.night_life" max="5" read-only="isReadOnly"></span>
+        <p class="rating"><span uib-rating name="nightLife" ng-model="stopsShow.post.night_life" max="5" read-only="isReadOnly"></span></p>
       </div>
 
       <div class="form-group">
         <label for="culture">Culture</label>
-        <span uib-rating ng-model="stopsShow.post.culture" max="5" read-only="isReadOnly"></span>
+        <p class="rating"><span uib-rating ng-model="stopsShow.post.culture" max="5" read-only="isReadOnly"></span></p>
       </div>
 
       <div class="form-group">
         <label for="hospitality">Hospitality</label>
-        <span uib-rating name="hospitality" ng-model="stopsShow.post.hospitality" max="5" read-only="isReadonly"></span>
+        <p class="rating"><span uib-rating name="hospitality" ng-model="stopsShow.post.hospitality" max="5" read-only="isReadonly"></span></p>
       </div>
-
-      <button>Post</button>
-
+      <div class="authButton">
+        <button>Post</button>
+      </div>
     </form>
   </div>
+
   <div>
-    <div ng-repeat="post in stopsShow.stop.posts" class= "col-md-6">
-      <a ui-sref="postsShow({ id: post.id })"><strong>{{ post.title }}</strong></a>
+    <div ng-repeat="post in stopsShow.stop.posts" class="col-sm-6 postDiv">
+      <h2><a ui-sref="postsShow({ id: post.id })"><strong>{{ post.title }}</strong></a></h2>
       <br>
-      <p>{{ post.body }}</p>
+      <p class="postShowBody"><button ng-if="main.isAuthenticated() && main.currentUser.id === post.user.id" ng-click="stopsShow.deletePost(post)" class="deleteButton" >X</button>  {{ post.body }}</p>
       <button ng-if="main.isAuthenticated()" ng-click="stopsShow.upVote(post)">&#128077;</button>
-      {{ post.get_upvotes.length }} / {{ post.get_downvotes.length }}
+      {{post.get_balanced_votes}} <span ng-if="!main.isAuthenticated()">Votes</span>
       <button ng-if="main.isAuthenticated()" ng-click="stopsShow.downVote(post)">&#128078;</button>
-      <button ng-if="main.isAuthenticated() && main.currentUser.id === post.user.id" ng-click="stopsShow.deletePost(post)" class="deleteButton" >X</button>
+
     </div>
   </div>
 </div>
