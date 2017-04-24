@@ -5,32 +5,46 @@
     <button ng-if="main.isAuthenticated() && main.currentUser.id === tripsShow.trip.user.id" ui-sref="tripsEdit({ id: tripsShow.trip.id })">Edit</button>
   </div>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6 stopsList">
       <h3>Current Stops</h3>
       <ul>
-        <li ng-repeat="stop in tripsShow.trip.stops">
+        <li ng-repeat="stop in tripsShow.trip.stops" class="stops">
           <button ng-if="main.isAuthenticated() && main.currentUser.id === tripsShow.trip.user.id" ng-click="tripsShow.deleteStop(stop)" class="deleteButton">X</button>
           <a ui-sref="stopsShow({ id: stop.id })">{{ stop.place }}, {{ stop.country }} - {{ stop.start_date | date }} to {{ stop.leave_date | date }}</a>
         </li>
       </ul>
     </div>
 
-    <div class="col-sm-6" ng-if="main.isAuthenticated() && main.currentUser.id === tripsShow.trip.user.id">
-      <h3>Add A Stop</h3>
-      <form ng-submit="tripsShow.addStop()" class="form-group">
+    <div class="col-sm-6 addStopForm" ng-if="main.isAuthenticated() && main.currentUser.id === tripsShow.trip.user.id">
+
+      <form ng-submit="tripsShow.addStop()" class="form-group authForm" name="tripsShow.stopForm" novalidate>
+        <h3>Add A Stop</h3>
         <div>
-          <label for="place">Place</label>
-          <input name="place" autocomplete ng-model="tripsShow.city" lat="tripsShow.info.lat" lng="tripsShow.info.lng" place="tripsShow.info.place" country="tripsShow.info.country" class="form-control">
+          <label for="place">Destination</label>
+          <input name="place" id="place" autocomplete ng-model="tripsShow.city" lat="tripsShow.info.lat" lng="tripsShow.info.lng" place="tripsShow.info.place" country="tripsShow.info.country" class="form-control" required>
         </div>
+        <div class="ng-message-error" ng-messages="tripsShow.stopForm.place.$error" ng-show="(tripsShow.stopForm.$submitted || tripsShow.stopForm.place.$touched)">
+          <p ng-message="required">Your Stop Destination is Required</p>
+        </div>
+
         <div>
           <label for="start_date">Start Date</label>
-          <input type="date" name="start_date" min="{{ tripsShow.startDate }}" max="{{ tripsShow.leaveDate }}" ng-model="tripsShow.stop.start_date" class="form-control">
+          <input type="date" id="start_date" name="start_date" min="{{ tripsShow.startDate }}" max="{{ tripsShow.leaveDate }}" ng-model="tripsShow.stop.start_date" class="form-control" required>
         </div>
+        <div class="ng-message-error" ng-messages="tripsShow.stopForm.start_date.$error" ng-show="(tripsShow.stopForm.$submitted || tripsShow.stopForm.start_date.$touched)">
+          <p ng-message="required">Your Arrival Date is Required.</p>
+        </div>
+
         <div>
           <label for="leave_date">Leave Date</label>
-          <input type="date" name="leave_date" min="{{ tripsShow.startDate }}" max="{{ tripsShow.leaveDate }}" ng-model="tripsShow.stop.leave_date" class="form-control">
+          <input type="date" id="leave_date" name="leave_date" min="{{ tripsShow.startDate }}" max="{{ tripsShow.leaveDate }}" ng-model="tripsShow.stop.leave_date" class="form-control" required>
         </div>
-        <button>Add</button>
+        <div class="ng-message-error" ng-messages="tripsShow.stopForm.leave_date.$error" ng-show="(tripsShow.stopForm.$submitted || tripsShow.stopForm.leave_date.$touched)">
+          <p ng-message="required">Your Departure Date is Required.</p>
+        </div>
+        <div class="authButton">
+          <button class="button">Add</button>
+        </div>
       </form>
     </div>
   </div>
@@ -71,9 +85,9 @@
         <h5>Airline</h5>
       </div>
     </div>
+    <div class="row">
     <ul>
       <li ng-repeat="flight in tripsShow.flights">
-        <div class="row">
           <div class="col-md-3">
             <p>{{ flight.DestinationCity}}</p>
           </div>

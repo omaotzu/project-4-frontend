@@ -21,8 +21,10 @@ function LoginCtrl($auth, $state) {
   const vm = this;
 
   function login() {
-    $auth.login(vm.credentials)
-      .then(() => $state.go('usersShow', { id: $auth.getPayload().id }));
+    if(vm.loginForm.$valid){
+      $auth.login(vm.credentials)
+        .then(() => $state.go('usersShow', { id: $auth.getPayload().id }));
+    }
   }
   vm.login = login;
 }

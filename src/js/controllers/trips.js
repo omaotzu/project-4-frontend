@@ -144,23 +144,26 @@ function TripsShowCtrl(Trip, Stop, $stateParams, filterFilter, $scope, skyscanne
     });
 
   function addStop() {
-    vm.stop.trip_id = vm.trip.id;
-    vm.stop.lat = vm.info.lat;
-    vm.stop.lng = vm.info.lng;
-    vm.stop.place = vm.info.place;
-    vm.stop.country = vm.info.country;
+    if (vm.stopForm.$valid) {
+      vm.stop.trip_id = vm.trip.id;
+      vm.stop.lat = vm.info.lat;
+      vm.stop.lng = vm.info.lng;
+      vm.stop.place = vm.info.place;
+      vm.stop.country = vm.info.country;
 
-    vm.stop.start_date = new Date(vm.stop.start_date.getTime() + (2*1000*60*60));
-    vm.stop.leave_date = new Date(vm.stop.leave_date.getTime() + (2*1000*60*60));
+      vm.stop.start_date = new Date(vm.stop.start_date.getTime() + (2*1000*60*60));
+      vm.stop.leave_date = new Date(vm.stop.leave_date.getTime() + (2*1000*60*60));
 
-    Stop
-      .save({ stop: vm.stop })
-      .$promise
-      .then((stop) => {
-        vm.trip.stops.push(stop);
-        vm.stop = {};
-      });
+      Stop
+        .save({ stop: vm.stop })
+        .$promise
+        .then((stop) => {
+          vm.trip.stops.push(stop);
+          vm.stop = {};
+        });
+    }
     vm.city = null;
+    vm.stopForm.$pristine;
   }
   vm.addStop = addStop;
 
