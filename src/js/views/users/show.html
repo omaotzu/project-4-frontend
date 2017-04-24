@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="col-sm-12">
+  <div class="col-sm-12 usersShow-title text-center">
     <h3>{{usersShow.user.full_name}}</h3>
     <button ng-if="main.isAuthenticated() && main.currentUser.id === usersShow.user.id" ui-sref="usersEdit({ id: usersShow.user.id })">Edit</button>
     <button ng-if="main.isAuthenticated() && main.currentUser.id === usersShow.user.id" ng-click="usersShow.delete()">Delete</button>
@@ -7,7 +7,7 @@
 
     <ul>
       <li ng-repeat="trip in usersShow.user.trips">
-        <strong>{{ trip.trip_name }}</strong>
+        <h4><strong>{{ trip.trip_name }}</strong></h4>
         <p>From {{ trip.start_date | date }} to {{ trip.leave_date | date }}</p>
         <button ui-sref="tripsShow({ id: trip.id })">Show</button>
         <button ng-if="main.isAuthenticated() && main.currentUser.id === usersShow.user.id" ng-click="usersShow.deleteTrip(trip)">Delete</button>

@@ -6,6 +6,12 @@ main {
 nav {
   margin: 0;
   margin-bottom: 0px;
+  div.navbar-header {
+    .earthIcon {
+      height: 25px;
+      width: 25px;
+    }
+  }
   ul {
     li {
       a {
@@ -59,9 +65,27 @@ li {
   list-style: none;
 }
 
-#map {
-  height: 50vh;
-  border-radius: 50%;
+.tripsIndex {
+  .mapWrapper {
+    width: 50%;
+    border-radius: 50%;
+    overflow: hidden !important;
+    position: relative;
+    z-index: 2;
+
+    &:after {
+      content: "";
+      display: block;
+      padding-top: 100%;
+    }
+    #map {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
 }
 
 main {
@@ -78,19 +102,21 @@ main {
   &.map {
       background-image: url('../images/map.jpg');
   }
-}
-
-nav {
-
-  div.navbar-header {
-    .earthIcon {
-      height: 25px;
-      width: 25px;
+  div.usersShow-title {
+    h3 {
+      display: inline-block;
+    }
+    button {
+      // display: inline-block;
+    }
+    img {
+      // display: inline-block;
+      max-height: 100%;
     }
   }
 }
 
-@keyframes bounce {
+@keyframes spin {
   0% {
     transform: translateY(0);
   }
