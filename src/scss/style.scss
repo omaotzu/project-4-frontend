@@ -1,11 +1,11 @@
 @import 'reset';
+
 body {
   letter-spacing: 1px;
 }
 main {
   height: 100vh;
 }
-
 
 a {
   text-decoration: none;
@@ -17,7 +17,6 @@ a {
 
 img {
   height: 100%;
-
 }
 
 nav {
@@ -136,7 +135,11 @@ li {
 }
 
 main {
+  height: 100vh;
   background-position: center;
+  .container {
+    margin-top: 40px;  
+  }
   &.world {
     background-image: url('../images/world.jpg');
   }
@@ -149,15 +152,26 @@ main {
   &.map {
       background-image: url('../images/map.jpg');
   }
-  div.usersShow-title {
+  .usersShow {
+    .profileHeader {
+      margin-bottom: 20px;
+    }
     h3 {
       display: inline-block;
     }
     button {
+      padding: 10px;
     }
-    img {
-      max-height: 100%;
-      display: block;
+    .profileImage {
+      height: 300px;
+      max-width: 300px;
+      margin: 0 auto;
+      img {
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+      }
+
     }
   }
 }
