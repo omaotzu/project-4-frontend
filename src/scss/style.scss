@@ -3,7 +3,6 @@
 $blue: #92A6DB;
 $red: #752730;
 
-
 body {
   letter-spacing: 1px;
   font-family: 'BioRhyme', serif;
@@ -30,6 +29,7 @@ nav {
   font-family: 'BioRhyme', serif;
   margin: 0;
   margin-bottom: 0px;
+  background-color: white !important;
   div.navbar-header {
     transform-style: preserve-3d;
     .earthIcon {
@@ -170,12 +170,13 @@ main {
   .usersShow {
     .profileHeader {
       margin-bottom: 20px;
-    }
-    h3 {
-      display: inline-block;
-    }
-    button {
-      padding: 10px;
+      h3 {
+        font-size: 25px;
+        display: inline-block;
+      }
+      button {
+        padding: 10px;
+      }
     }
     .profileImage {
       height: 300px;
@@ -186,7 +187,19 @@ main {
         display: block;
         margin: 0 auto;
       }
-
+    }
+    ul {
+      li {
+        list-style: none;
+        h4 {
+          font-size: 20px;
+          font-weight: bold;
+          padding: 20px;
+        }
+        p {
+          padding: 20px;
+        }
+      }
     }
   }
 }

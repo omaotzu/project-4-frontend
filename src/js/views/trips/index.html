@@ -6,9 +6,18 @@
 
   <div ng-repeat="post in tripsIndex.filteredStops | orderBy : '-get_balanced_votes'" class="tripsIndexPosts">
       <h3>
+<<<<<<< HEAD
         <span>{{post.get_balanced_votes}}</span>
         <a ui-sref="postsShow({ id: post.id })" >{{ post.title }}</a>
          - <a ui-sref="usersShow({ id: post.user.id })"><strong>{{ post.user.username }}</strong></a>
+=======
+        <a ui-sref="postsShow({ id: post.id })" >
+          {{ post.title }}
+        </a> -
+        <a ui-sref="usersShow({ id: post.user.id })">
+          <strong>{{ post.user.username }}</strong>
+        </a>
+>>>>>>> development
        </h3>
 
       <p class="postShowBody">{{ post.body }}</p>
