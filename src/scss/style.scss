@@ -254,6 +254,29 @@ main {
   margin-bottom: 30px;
 }
 
+.stopHeader {
+  margin: 10px 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid black;
+  h1 {
+    span {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 @media only screen and (min-width:600px) {
   .mapWrapper {
     max-width: 600px;
