@@ -1,7 +1,8 @@
 <div class="container">
-  <h3>Register</h3>
+
   <div>
-    <form name="register.registerForm" ng-submit="register.register()" class="form-group" novalidate>
+    <form name="register.registerForm" ng-submit="register.register()" class="form-group authForm" novalidate>
+      <h3>Register</h3>
       <div>
         <label for="username">Username</label>
         <input type="text" name="username" id="username" class="form-control" ng-model="register.user.username" required>
@@ -43,7 +44,7 @@
       </div>
 
       <div>
-        <label for="password_confirmation">Password _confirmation</label>
+        <label for="password_confirmation">Password Confirmation</label>
         <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" ng-model="register.user.password_confirmation" required>
       </div>
 
@@ -53,9 +54,11 @@
 
       <div class="form-group">
         <label for="base64">Image</label>
-        <input type="file" base64 name="base64" id="base64" ng-model="register.user.base64">
+        <input type="file" base64 name="base64" id="base64" ng-model="register.user.base64" class="form-control">
       </div>
-      <button class="button">Register</button>
+      <div class="authButton">
+        <button class="button">Register</button>
+      </div>
     </form>
   </div>
 </div>

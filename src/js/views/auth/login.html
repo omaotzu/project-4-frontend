@@ -1,23 +1,25 @@
 <div class="container">
-  <h3>Login</h3>
-  <form name="login.loginForm" ng-submit="login.login()" class="form-group">
+
+  <form name="login.loginForm" ng-submit="login.login()" class="form-group authForm" novalidate>
+    <h3>Login</h3>
     <div>
       <label>Email</label>
       <input type="text" name="email" id="email" class="form-control" ng-model="login.credentials.email" required>
     </div>
 
     <div class="ng-message-error" ng-messages="login.loginForm.email.$error" ng-show="(login.loginForm.$submitted || login.loginForm.email.$touched)">
-      <p ng-message="required">Your email is required.</p>
+      <p ng-message="required" class="err">Your email is required.</p>
     </div>
 
     <div>
       <label>Password</label>
       <input type="password" name="password" id="password" class="form-control" ng-model="login.credentials.password" required>
     </div>
-    <div class="ng-message-error" ng-messages="login.loginForm.password.$error" ng-show="(login.loginForm.$submitted || login.loginForm.password.$touched)">
+    <div class="ng-message-error errors" ng-messages="login.loginForm.password.$error" ng-show="(login.loginForm.$submitted || login.loginForm.password.$touched)">
       <p ng-message="required">Your password is required.</p>
     </div>
-
-    <button>Login</button>
+    <div class="authButton">
+      <button class="button">Login</button>
+    </div>
   </form>
 </div>

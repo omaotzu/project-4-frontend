@@ -1,3 +1,4 @@
+@import 'reset';
 main {
   height: 100vh;
 }
@@ -104,5 +105,140 @@ nav {
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.authForm {
+  width: 80%;
+  margin: 30px auto;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  padding: 10px;
+
+  label, input{
+    margin-top: 10px;
+  }
+
+  h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .authButton {
+    margin-top: 25px;
+    text-align: center;
+  }
+}
+
+.ng-message-error {
+  color: red;
+  padding: 5px;
+  text-align: center;
+  margin: 5px 0;
+}
+
+.addStopForm {
+  min-height: 300px;
+}
+
+.stopsList {
+  max-width: 80%;
+  min-height: 300px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  margin: 30px auto;
+  padding: 10px;
+  .stops {
+    margin-bottom: 10px;
   }
 }
