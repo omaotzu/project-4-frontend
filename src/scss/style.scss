@@ -9,6 +9,9 @@ a {
   &:hover {
     text-decoration: none;
   }
+
+img {
+  height: 100%;
 }
 
 nav {
@@ -77,13 +80,14 @@ li {
 }
 
 .tripsIndex {
+
   .mapWrapper {
-    width: 50%;
+    width: 100%;
     border-radius: 50%;
     overflow: hidden !important;
     position: relative;
     z-index: 2;
-
+    margin-right: 0;
     &:after {
       content: "";
       display: block;
@@ -118,11 +122,10 @@ main {
       display: inline-block;
     }
     button {
-      // display: inline-block;
     }
     img {
-      // display: inline-block;
       max-height: 100%;
+      display: block;
     }
   }
 }
@@ -144,97 +147,6 @@ main {
     transform: translateY(0);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .authForm {
   width: 80%;
@@ -302,7 +214,6 @@ main {
   }
 }
 
-
 .flightsForm {
   @extend .authForm;
   border-top: none;
@@ -337,4 +248,12 @@ main {
 }
 .biggerBottom{
   margin-bottom: 30px;
+}
+
+@media only screen and (min-width:600px) {
+  .mapWrapper {
+    max-width: 600px;
+    text-align: center;
+    margin-right: 0;
+  }
 }
