@@ -43,9 +43,34 @@ li {
   border-radius: 50%;
 }
 
-main.world {
-    background-image: url('../images/world1.jpg');
+main {
+  background-position: center;
+  &.world {
+    background-image: url('../images/world.jpg');
+  }
+  &.find {
+      background-image: url('../images/find.jpg');
+  }
+  &.search {
+      background-image: url('../images/search.jpg');
+  }
+  &.map {
+      background-image: url('../images/map.jpg');
+  }
 }
+
+// main.world {
+//     background-image: url('../images/world.jpg');
+// }
+// main.find {
+//     background-image: url('../images/find.jpg');
+// }
+// main.search {
+//     background-image: url('../images/search.jpg');
+// }
+// main.map {
+//     background-image: url('../images/map.jpg');
+// }
 
 nav {
   margin: 0;

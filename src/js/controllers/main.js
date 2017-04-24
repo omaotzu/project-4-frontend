@@ -2,8 +2,8 @@ angular
   .module('myGuideBlog')
   .controller('MainCtrl', MainCtrl);
 
-MainCtrl.$inject = ['$rootScope', '$state', '$auth'];
-function MainCtrl($rootScope, $state, $auth){
+MainCtrl.$inject = ['$rootScope', '$state', '$auth', '$scope'];
+function MainCtrl($rootScope, $state, $auth, $scope){
   const vm = this;
   vm.isAuthenticated = $auth.isAuthenticated;
   vm.isNavCollapsed = true;
@@ -18,11 +18,10 @@ function MainCtrl($rootScope, $state, $auth){
   $rootScope.$on('$stateChangeSuccess', () => {
     if(vm.stateHasChanged) vm.message = null;
     if(!vm.stateHasChanged) vm.stateHasChanged = true;
-    if($auth.getPayload()) {
-      vm.currentUser = $auth.getPayload();
-    }
+    if($auth.getPayload()) vm.currentUser = $auth.getPayload();
+    $scope.isNavCollapsed = true;
     vm.stateName = $state.current.name;
-    vm.dailyImageArray = ['world'];
+    vm.dailyImageArray = ['world', 'map', 'search', 'find'];
     vm.dailyImage = vm.dailyImageArray[Math.floor(vm.dailyImageArray.length*Math.random())];
   });
 
