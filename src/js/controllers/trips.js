@@ -28,9 +28,9 @@ function TripsIndexCtrl(Trip, Post, Stop) {
 
   function initMap() {
     vm.map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 1,
-      center: { lat: 10.755018, lng: 32.344179 },
-      scrollwheel: false
+      zoom: 2,
+      center: { lat: 10.755018, lng: 5.344179 },
+      backgroundColor: '#a3ccff'
     });
 
     vm.marker = vm.allPosts.map(function(location) {
