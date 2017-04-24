@@ -1,16 +1,17 @@
 <div class="container">
-  <h1>{{ stopsShow.stop.place }}</h1>
-
+  <div class="row stopHeader">
+    <h1>Posts from <span>{{ stopsShow.stop.place }}</span></h1>
+  </div>
   <div>
     <form ng-submit="stopsShow.addPost()" ng-if="main.isAuthenticated() && main.currentUser.id === stopsShow.stop.user.id">
       <div class="form-group">
         <label for="title">Title</label>
-        <input class="form-control" type="text" name="title" ng-model="stopsShow.post.title">
+        <input class="form-control" type="text" name="title" ng-model="stopsShow.post.title" required>
       </div>
 
       <div class="form-group">
         <label for="postBody">Your Post</label>
-        <textarea class="form-control" name="postBody" ng-model="stopsShow.post.body"></textarea>
+        <textarea class="form-control" name="postBody" ng-model="stopsShow.post.body" required></textarea>
       </div>
 
       <div class="form-group">
@@ -45,7 +46,7 @@
       <button ng-if="main.isAuthenticated()" ng-click="stopsShow.upVote(post)">&#128077;</button>
       {{ post.get_upvotes.length }} / {{ post.get_downvotes.length }}
       <button ng-if="main.isAuthenticated()" ng-click="stopsShow.downVote(post)">&#128078;</button>
-      <button ng-if="main.isAuthenticated() && main.currentUser.id === post.user.id" ng-click="stopsShow.deletePost(post)">X</button>
+      <button ng-if="main.isAuthenticated() && main.currentUser.id === post.user.id" ng-click="stopsShow.deletePost(post)" class="deleteButton" >X</button>
     </div>
   </div>
 </div>

@@ -3,8 +3,18 @@ main {
   height: 100vh;
 }
 
+
+a {
+  text-decoration: none;
+  color: black;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 img {
   height: 100%;
+
 }
 
 nav {
@@ -59,6 +69,9 @@ h1 {
 
 .deleteButton {
   border-radius: 100%;
+  font-size: 10px;
+  padding: 10px;
+  text-align: center;
 }
 
 .carousel {
@@ -218,21 +231,103 @@ main {
   margin: 5px 0;
 }
 
+.tripDetails {
+  margin-top: 10px;
+  margin-left: 20px;
+  h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+}
+
 .addStopForm {
-  min-height: 300px;
+  min-height: 100%;
+  h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+  }
+
 }
 
 .stopsList {
   max-width: 80%;
-  min-height: 300px;
+  min-height: 100%;
+  text-align: center;
   border-top: 2px solid black;
-  border-bottom: 2px solid black;
   margin: 30px auto;
   padding: 10px;
+  h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
   .stops {
     margin-bottom: 10px;
   }
 }
+
+
+.flightsForm {
+  @extend .authForm;
+  border-top: none;
+  margin: 0 auto;
+  h3 {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+}
+
+.flightResultTitle{
+  text-align: center;
+  font-size: 18px;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.flightColumnHeaders{
+  text-align: center;
+  margin-bottom: 15px;
+  h5 {
+    font-weight: bold;
+    font-size: 16px;
+  }
+}
+
+.results {
+  padding: 5px 0;
+  text-align: center;
+}
+.biggerBottom{
+  margin-bottom: 30px;
+}
+
+.stopHeader {
+  margin: 10px 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid black;
+  h1 {
+    span {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 @media only screen and (min-width:600px) {
   .mapWrapper {
