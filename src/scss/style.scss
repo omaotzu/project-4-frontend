@@ -1,5 +1,7 @@
 @import 'reset';
 
+$mauve: #bccaf0;
+
 body {
   letter-spacing: 1px;
 }
@@ -9,7 +11,6 @@ main {
 
 a {
   text-decoration: none;
-  color: red;
   &:hover {
     text-decoration: none;
   }
@@ -22,6 +23,7 @@ img {
 nav {
   margin: 0;
   margin-bottom: 0px;
+  background-color: white !important;
   div.navbar-header {
     transform-style: preserve-3d;
     .earthIcon {
@@ -138,7 +140,7 @@ main {
   height: 100vh;
   background-position: center;
   .container {
-    margin-top: 40px;  
+    margin-top: 40px;
   }
   &.world {
     background-image: url('../images/world.jpg');
@@ -155,12 +157,13 @@ main {
   .usersShow {
     .profileHeader {
       margin-bottom: 20px;
-    }
-    h3 {
-      display: inline-block;
-    }
-    button {
-      padding: 10px;
+      h3 {
+        font-size: 25px;
+        display: inline-block;
+      }
+      button {
+        padding: 10px;
+      }
     }
     .profileImage {
       height: 300px;
@@ -171,7 +174,19 @@ main {
         display: block;
         margin: 0 auto;
       }
-
+    }
+    ul {
+      li {
+        list-style: none;
+        h4 {
+          font-size: 20px;
+          font-weight: bold;
+          padding: 20px;
+        }
+        p {
+          padding: 20px;
+        }
+      }
     }
   }
 }
