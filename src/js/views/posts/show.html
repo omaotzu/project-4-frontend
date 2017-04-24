@@ -8,7 +8,7 @@
     <div uib-carousel active="postsShow.active" interval="postsShow.interval" no-wrap="postsShow.noWrap">
       <div uib-slide ng-repeat="image in postsShow.post.images" index="$index">
         <img class="carouselImage" ng-src="{{ image.image_src }}">
-        <button ng-if="main.isAuthenticated() && main.currentUser.id === image.user.id" ng-click="postsShow.deleteImage(image)">x</button>
+        <button ng-if="main.isAuthenticated() && main.currentUser.id === image.user.id" ng-click="postsShow.deleteImage(image)" class="deleteButton">x</button>
       </div>
     </div>
   </div>

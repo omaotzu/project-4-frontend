@@ -45,7 +45,7 @@
       <button ng-if="main.isAuthenticated()" ng-click="stopsShow.upVote(post)">&#128077;</button>
       {{ post.get_upvotes.length }} / {{ post.get_downvotes.length }}
       <button ng-if="main.isAuthenticated()" ng-click="stopsShow.downVote(post)">&#128078;</button>
-      <button ng-if="main.isAuthenticated() && main.currentUser.id === post.user.id" ng-click="stopsShow.deletePost(post)">X</button>
+      <button ng-if="main.isAuthenticated() && main.currentUser.id === post.user.id" ng-click="stopsShow.deletePost(post)" class="deleteButton" >X</button>
     </div>
   </div>
 </div>
