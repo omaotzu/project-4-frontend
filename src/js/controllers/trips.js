@@ -24,13 +24,18 @@ function TripsIndexCtrl(Trip, Post, Stop) {
       initMap();
     });
 
-
   function initMap() {
     vm.map = new google.maps.Map(document.getElementById('map'), {
       zoom: 2,
       center: { lat: 10.755018, lng: 5.344179 },
       backgroundColor: '#a3ccff',
+      scrollwheel: false,
       disableDefaultUI: true,
+      gestureHandling: 'greedy',
+      zoomControl: true,
+      zoomControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_CENTER
+      },
       styles
     });
 
@@ -53,7 +58,9 @@ function TripsIndexCtrl(Trip, Post, Stop) {
           .then((stop) => {
             vm.stop = stop;
             console.log('VM STOP', vm.stop);
-            contentString = `<ul>
+            contentString = `
+                            <h3>${vm.stop[0].place}</h3>
+                            <ul>
                               <li>Value For Money: <br>${vm.stop[0].average_value_for_money}</li>
                               <li>Night Life: <br>${vm.stop[0].average_night_life}</li>
                               <li>Culture: <br>${vm.stop[0].average_culture}</li>
