@@ -18,7 +18,8 @@ function StopsShowCtrl(Stop, Post, $state, $stateParams) {
         vm.stop.posts.push(post);
         vm.post = {};
       });
-    console.log(vm.post);
+      vm.stopForm.$setPristine();
+      vm.stopForm.$setUntouched();
   }
 
   vm.addPost = addPost;
