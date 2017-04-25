@@ -39,7 +39,7 @@ function MainCtrl($rootScope, $state, $auth, $scope){
 
   function logout() {
     $auth.logout();
-    $state.go('tripsIndex');
+    $state.go('home');
   }
   vm.logout = logout;
 }
