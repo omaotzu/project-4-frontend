@@ -1,64 +1,43 @@
-### Using this Angular Gulp Setup
+# Project 4
+Omar Harvey-Phillips
+Mark Davis
 
-To get setup with the starter-code, you first need to run:
 
-```sh
-$ bower install && gulp install
-```
+## MyGuideBlog
 
-## How is gulp setup?
+GA WDI London - Project 4 (Group Project)
 
-Rather than trying to manage one giant `gulpfile.js` that is file responsible for creating multiple tasks, each task has been broken out into its own file and placed in a directory `tasks`. Any files in that directory get automatically required in the gulpfile using the `require-dir` npm package.
+For the fourth project we were tasked with creating a Ruby on Rails back end with an Angular front end app and for this project we could choose whether to work in teams or not. We worked in a group of two.
 
-To add a new task, simply add a new task file that directory.
+After doing a UK property based app for our third project we decided for our final one to do something focused on abroad. We settled on a Travel Blogging Platform that aimed to have heavy user input and a rating system whilst also incorporating elements of a journey planner.
+[See it here!](https://secure-plateau-23163.herokuapp.com/)
 
-/tasks/default.js specifies the default set of tasks to run
-when you run `gulp`.
+![](./screenshots/MyGuideBlog_img1.png)
 
-Configuration options are stored in the `package.json` file.
 
-When deploying, ensure that a `postinstall` script has been added to
-your package.json, e.g.
+### Approach / How it works
 
-```json
-"postinstall": "bower install && gulp deploy"
-```
 
-This setup expects that there is a bower.json file with at least ONE package
-installed. This will created a bower_components directory after
-the postinstall script has run.
+The aim of the app was to create a system whereby as people travelled they could upload information about their travel and rate each location according to specif sets of values
 
-When deploying, this setup expects that the NODE_ENV is set to `production`.
-Also that the NPM_CONFIG_PRODUCTION is set to `false`. Then you can also set the API_URL to be the correct URL for your deployed app. This will automatically replace `http://localhost:4000` to be the correct url.
+These blog posts would then be map onto an index page contain one global map and display all the blog posts from specific locations when click on.
 
-You can do this by running:
+We implemented an upvoting system so those with number of votes would be higher up the index of blog posts for that location.
 
-```bash
-$ heroku config:set NODE_ENV=production
-$ heroku config:set NPM_CONFIG_PRODUCTION=false
+Alongside this users have the ability to upload photos and comments to each specific post
 
-# An example url
-$ heroku config:set API_URL=https://project-on-heroku.herokuapp.com/
-```
+![](./screenshots/MyGuideBlog_img3.png)
 
-### Bower overrides
+I focused on map functionality, user authentication, integration with Amazon Web Services and on the back end model relationships.
+##Technologies used
 
-Sometimes, you might want to `override` the `main` file(s) for a specific Bower component. You can do this directly inside the `bower.json` file like this:
+JavaScript, SCSS, HTML, Ruby, Ruby on Rails, AngularJS, PostgreSQL, AJAX, AWS, Moment.js, Google Maps API, Skyscanner API, Bootstrap, Gulp
 
-```json
-"overrides": {
-  "bootstrap": {
-    "main": [
-      "dist/css/bootstrap.css",
-      "dist/js/bootstrap.js",
-      "dist/fonts/*"
-    ]
-  },
-  "font-awesome": {
-    "main": [
-      "css/font-awesome.css",
-      "fonts/*"
-    ]
-  }
-},
-```
+Colour coordination was established by using Coolers and the landing page image was taken from Unsplashed.
+
+![](./screenshots/MyGuideBlog_img2.png)
+
+The Google Web Font 'BioRhyme' was used to style the site.
+
+
+![](./screenshots/MyGuideBlog_img4.png)
