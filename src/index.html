@@ -34,9 +34,7 @@
   			</ul>
   		</div>
   	</nav>
-      <div class="message" ng-if="main.message">
-        <div class="container">{{main.message}}</div>
-      </div>
+      <div class="message" ng-if="main.message">{{ main.message }}</div>
     <main ui-view ng-class="{'{{main.dailyImage}}': main.stateName === 'home'}"></main>
   </body>
 </html>

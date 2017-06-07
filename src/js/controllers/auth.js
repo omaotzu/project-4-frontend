@@ -19,11 +19,17 @@ function RegisterCtrl($auth, $state){
 LoginCtrl.$inject = ['$auth', '$state'];
 function LoginCtrl($auth, $state) {
   const vm = this;
+  vm.credentials = {};
 
   function login() {
     if(vm.loginForm.$valid){
       $auth.login(vm.credentials)
-        .then(() => $state.go('usersShow', { id: $auth.getPayload().id }));
+        .then(() => $state.go('usersShow', { id: $auth.getPayload().id }))
+        .catch((err) => {
+          if(err.status === 401){
+            $state.reload();
+          }
+        });
     }
   }
   vm.login = login;

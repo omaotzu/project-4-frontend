@@ -12,8 +12,12 @@ function MainCtrl($rootScope, $state, $auth, $scope){
   $rootScope.$on('error', (e, err) => {
     vm.stateHasChanged = false;
     vm.message = err.data.message;
-
+    if(err.status === 401) $state.go('login');
+    if($state.current.name === 'login' && err.status === 401){
+      vm.message = 'Incorrect login credentials';
+    }
   });
+
 
   $rootScope.$on('$stateChangeSuccess', () => {
     if(vm.stateHasChanged) vm.message = null;
